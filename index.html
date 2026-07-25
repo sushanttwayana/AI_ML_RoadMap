@@ -41,6 +41,10 @@
   .facts{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
   .fact{font-family:'IBM Plex Mono',monospace;font-size:12.5px;border:1px solid var(--hairline);background:var(--card);border-radius:999px;padding:7px 14px;color:var(--ink)}
   .fact b{font-weight:500;color:var(--trunk)}
+  .quick-links{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+  .quick-links a{font-family:'IBM Plex Mono',monospace;font-size:12.5px;border:1px solid var(--hairline);background:var(--card);border-radius:999px;padding:7px 14px;color:var(--ink);text-decoration:none}
+  .quick-links a:hover{border-color:var(--ink)}
+  .quick-links a:focus-visible{outline:3px solid var(--ai);outline-offset:2px}
 
   /* ---------- toolbar ---------- */
   .toolbar{position:sticky;top:0;z-index:30;background:color-mix(in srgb, var(--paper) 88%, transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--hairline);padding:10px 0;margin-top:26px}
@@ -173,16 +177,22 @@
     <span class="fact"><b>75+</b> modules, <b>350+</b> topics</span>
     <span class="fact"><b>~9–12</b> months at 10–15 hrs/week</span>
   </div>
+  <nav class="quick-links" aria-label="Roadmap quick links">
+    <a href="#stage00">Go to prerequisites</a>
+    <a href="#stage01">Go to ML core</a>
+    <a href="#fork">Go to career branches</a>
+    <a href="#rules">Go to usage rules</a>
+  </nav>
 </header>
 
 <div class="toolbar">
   <div class="wrap toolbar-inner">
     <div class="seg" role="group" aria-label="Filter branches">
-      <button class="f-all" aria-pressed="true" onclick="setFilter('all',this)">Show both paths</button>
-      <button class="f-ml" aria-pressed="false" onclick="setFilter('ml',this)">ML Engineer</button>
-      <button class="f-ai" aria-pressed="false" onclick="setFilter('ai',this)">AI Engineer</button>
+      <button type="button" class="f-all" aria-pressed="true" data-filter="all">Show both paths</button>
+      <button type="button" class="f-ml" aria-pressed="false" data-filter="ml">ML Engineer</button>
+      <button type="button" class="f-ai" aria-pressed="false" data-filter="ai">AI Engineer</button>
     </div>
-    <button class="util" onclick="toggleAll()" id="toggleAllBtn">Expand all stations</button>
+    <button type="button" class="util" id="toggleAllBtn">Expand all stations</button>
   </div>
   <div class="wrap legend">
     <span class="chip-demo"><span class="dot" style="background:var(--trunk)"></span> Shared trunk</span>
@@ -193,7 +203,7 @@
 </div>
 
 <!-- STAGE 00 -->
-<section class="wrap stage">
+<section class="wrap stage" id="stage00">
   <div class="stage-label">
     <span class="stage-code">STAGE 00</span>
     <h2>Prerequisites</h2>
@@ -204,7 +214,7 @@
 </section>
 
 <!-- STAGE 01 -->
-<section class="wrap stage">
+<section class="wrap stage" id="stage01">
   <div class="stage-label">
     <span class="stage-code">STAGE 01</span>
     <h2>Machine Learning Core</h2>
@@ -255,7 +265,7 @@
 </section>
 
 <!-- RULES -->
-<section class="wrap rules">
+<section class="wrap rules" id="rules">
   <h2>How to use this map</h2>
   <div class="rule-grid">
     <div class="rule">
@@ -1028,151 +1038,90 @@ const ROADMAP = {
       prove:"Ship a complete AI application: either a \"chat with your documents\" RAG system on real PDFs with cited sources, or an automated workflow orchestrating multiple LLM calls and external tools end-to-end."
     },
     {
-      code:"AI·05", title:"Agentic AI", meta:"5–6 wks",
+      code:"AI·05", title:"Agentic AI", meta:"4–5 wks",
       why:"The fastest-growing area of 2026: LLMs that don't just answer, but act — calling tools, planning, and completing tasks.",
       subs:[
         { name:"Agent Foundations", topics:[
           "What makes an agent: reason → act → observe","Agents vs workflows vs chains",
-          "When you actually need an agent (often you don't)","Goal-oriented systems","Task decomposition fundamentals"
+          "When you actually need an agent (often you don't)"
+        ]},
+        { name:"Tool Use", topics:[
+          "Function calling & tool schemas","Designing good tools","Executing tools safely",
+          "Handling tool errors & retries"
         ]},
         { name:"Planning & Reasoning", topics:[
-          "Chain-of-Thought reasoning","Tree-of-Thoughts exploration","ReAct (Reason + Act) pattern",
-          "Reflection & self-critique loops","Deliberation vs direct answering","Sequential decision making",
-          "Task decomposition strategies","Subtask generation","Dependency mapping","Ordered vs parallel execution",
-          "Recursive decomposition","Dynamic replanning","Think → Act → Observe loop","Plan → Execute → Evaluate → Revise",
-          "Error-driven replanning","Bounded iterations & convergence criteria","Tool-aware reasoning",
-          "Tool selection reasoning","Argument construction for tools","Tool result interpretation","Planning with external APIs",
-          "Reasoning under partial information","State-aware planning","Maintaining intermediate state",
-          "Updating beliefs across steps","Contextual awareness","Execution trace management",
-          "Planning constraints: tokens, time, cost, safety","Depth limits & complexity budgets","Deterministic overrides",
-          "Human-in-the-loop interruptions","Infinite loop prevention","Hallucinated tool detection",
-          "Incorrect decomposition recovery","Over-planning vs under-planning","Goal alignment maintenance",
-          "Task completion rate evaluation","Plan validity assessment","Step-level accuracy metrics",
-          "Efficiency metrics (steps per task)","Robustness testing on edge cases"
+          "ReAct pattern","Plan-and-execute","Reflection & self-correction","Task decomposition"
         ]},
-        { name:"Tool Use & Autonomous Decision Making", topics:[
-          "Function calling & tool schemas","Designing good tools for agents","Autonomous vs deterministic tool routing",
-          "Tool selection reasoning by model","Argument passing & construction","Tool error handling & retries",
-          "Returning tool outputs to model context","Tool result interpretation","Multi-tool coordination",
-          "Handling partial tool failures","Tool hallucination detection","Fallback strategies when tools fail",
-          "Long-horizon tool chains","Sequential tool dependencies"
+        { name:"State & Memory", topics:[
+          "Short-term scratchpads","Long-term memory stores","State machines for agent control flow"
         ]},
-        { name:"State & Memory for Agents", topics:[
-          "Stateless LLMs vs stateful agents","Short-term working memory (execution trace)","Long-term memory & knowledge base",
-          "Intermediate outputs tracking","Tool results storage","Task progress & checkpoints","Agent state variables",
-          "Execution context preservation","Multi-step state propagation","Checkpointing for fault tolerance",
-          "Resuming from checkpoints","Thread-level isolation (multi-user agents)","Multi-agent shared memory",
-          "Belief updates across steps","Knowledge accumulation patterns","Memory retrieval for planning",
-          "Agent state persistence","Conversation state vs execution state","Session management",
-          "Human-in-loop state updates","State validation & consistency","Handling contradictory information"
-        ]},
-        { name:"Agent Protocols & Standardization", topics:[
-          "Model Context Protocol (MCP) fundamentals","Why standard tool interfaces matter","Decoupling models from tools",
-          "Tool schema definitions & contracts","Function calling format standardization","Structured tool responses",
-          "Client-server architecture for agents","Model as client, tool provider as server","Local vs remote tool execution",
-          "Capability discovery & tool registration","Dynamic capability exposure","Tool metadata & descriptions",
-          "Security & sandboxing in protocols","Permission control","Input validation","Preventing arbitrary code execution",
-          "MCP implementation basics","A2A (Agent-to-Agent) protocols (awareness)"
-        ]},
-        { name:"Agent Frameworks & Implementations", topics:[
-          "LangGraph: stateful agent patterns","ReAct pattern implementation","Tool calling with LangGraph",
-          "State persistence in LangGraph","Checkpointing & resumption","AutoGen multi-agent systems",
-          "Role-based agent specialization","Agent communication patterns","CrewAI for cooperative agents",
-          "Agent hierarchies & orchestration","LlamaIndex agents","Semantic Kernel agents","Haystack agents",
-          "When to build custom vs use framework","Framework trade-offs: flexibility vs simplicity","Agent SDKs",
-          "OpenAI Agents SDK","Anthropic Claude agents","Agno framework"
+        { name:"Protocols & Frameworks", topics:[
+          "MCP (Model Context Protocol)","Other protocols & interoperability (awareness)",
+          "Frameworks: LangGraph, CrewAI, Agents SDKs","When to skip frameworks and write the loop yourself"
         ]},
       ],
       p2:["Multi-agent systems & orchestration","Long-horizon tasks & checkpointing","Computer-use / browser agents","Agent evaluation harnesses"],
-      prove:"Build one working agent that uses at least two real tools (e.g. web search + database) to complete a multi-step task end-to-end, with reasoning traces and error recovery."
+      prove:"Build one working agent that uses at least two real tools (e.g. web search + a database) to finish a task end-to-end."
     },
     {
-      code:"AI·06", title:"LLMOps", meta:"4–5 wks",
+      code:"AI·06", title:"LLMOps", meta:"3–4 wks",
       why:"Demos are easy; production is the job. Cost, reliability and safety are what make you hireable.",
       subs:[
-        { name:"Deployment Architectures", topics:[
-          "API-based model access (OpenAI, Anthropic, Bedrock, Vertex AI)","Self-hosted open models","Hybrid (API + local)",
-          "Serverless vs containerized deployment","REST APIs for AI services","Background task workers & async processing",
-          "Authentication & rate limiting design","FastAPI for LLM backends","Docker containerization",
-          "Environment management (dev/staging/prod)","Scaling replicas & load balancing","GPU inference servers",
-          "Quantized inference for efficiency","Batch vs real-time serving patterns","vLLM, TGI, Ollama deployment",
-          "Horizontal scaling strategies","Response caching optimization","Queue-based systems (RabbitMQ, Kafka)",
-          "Token & latency optimization","CDN integration for responses"
+        { name:"Deployment", topics:[
+          "API design for LLM apps","Streaming to clients","Caching: exact & semantic",
+          "Cost controls: budgets, model routing, fallbacks"
         ]},
-        { name:"Observability & Monitoring", topics:[
-          "Full prompt & context logging","Tool call tracing & visibility","Multi-step workflow tracing","Request-level logging",
-          "Token usage tracking per request","Cost per request calculation","Latency breakdown (model vs retrieval vs tools)",
-          "SLA monitoring & alerting","LangSmith for production tracing","OpenTelemetry standards",
-          "Step-level execution tracking","Tool failure rate monitoring","Retry frequency tracking",
-          "Loop detection & prevention alerts","Hallucination rate tracking","Output validation failures",
-          "Guardrail trigger frequency","Error threshold alerts","Cost spike detection","Latency anomaly alerts",
-          "Automated rollback triggers","Prometheus metrics collection","Grafana dashboards","Datadog integration"
+        { name:"Observability", topics:[
+          "Tracing every LLM call (LangSmith / Langfuse)","Logging prompts & outputs — with PII care",
+          "Token & cost dashboards","Debugging bad outputs in production"
+        ]},
+        { name:"Evaluation", topics:[
+          "Building eval datasets from real usage","Automated evals: assertions & similarity",
+          "LLM-as-judge — and its pitfalls","Regression-testing prompts before release","Human review loops"
         ]},
         { name:"Safety & Guardrails", topics:[
-          "Prompt injection prevention","Input validation & sanitization","Role separation (system vs user input)",
-          "Toxicity detection on outputs","Sensitive data masking (PII detection)","Structured output validation with schemas",
-          "Tool permission control & sandboxing","Argument validation for tools","Limiting file system & network access",
-          "Instruction isolation & trusted context separation","Retrieval filtering to prevent contamination",
-          "Output constraint enforcement","Content policy enforcement","User-level access control",
-          "Rate limiting per tier / user","Audit logging of all operations","Human-in-the-loop approval workflows",
-          "Escalation triggers for high-risk outputs","Editable outputs for user correction","Risk-based routing decisions",
-          "OpenAI Moderation API","Anthropic Safety Filters","AWS Bedrock Guardrails","Guardrails AI framework",
-          "Presidio for PII detection","Pydantic for schema validation"
-        ]},
-        { name:"Governance & Compliance", topics:[
-          "Data sourcing & retention policies","PII handling & privacy protocols","User data isolation","Data deletion workflows",
-          "Role-Based Access Control (RBAC)","API key management & rotation","OAuth / JWT authentication",
-          "Environment separation & access control","Model versioning & change tracking","Prompt version control",
-          "Approval workflows for deployments","Change tracking & audit trails","GDPR readiness checks",
-          "Data localization requirements","Industry-specific compliance (finance, healthcare)","Audit logging",
-          "Risk classification frameworks","Impact assessment procedures","AI usage policies & documentation",
-          "Request logging & decision traceability","Model usage tracking","Explainability artifacts",
-          "Incident reporting systems","Compliance dashboards & monitoring"
-        ]},
-        { name:"Managed AI Platforms & Integration", topics:[
-          "What managed platforms provide: hosted models, inference APIs, built-in scaling","Security & IAM integration",
-          "Data encryption & VPC isolation","Compliance certifications & standards","Model selection & switching ease",
-          "Fine-tuning support on managed platforms","RAG integrations (retrieval services)","Guardrails & safety controls",
-          "Monitoring dashboards built-in","Serverless inference scaling","Auto-scaling policies","Multi-region deployment",
-          "Load balancing","Rate limiting controls","AWS Bedrock capabilities","Azure OpenAI integration",
-          "Google Vertex AI platform","Hugging Face Inference Endpoints","Anthropic Platform","OpenAI Platform",
-          "When to choose managed: fast deployment, enterprise needs, compliance, reduced ops","Trade-offs: vendor lock-in, customization limits, cost, control",
-          "Hybrid approach: managed + self-hosted"
+          "Prompt injection & jailbreak defense","Input / output filtering & moderation",
+          "PII detection & redaction","Rate limiting & abuse prevention"
         ]},
       ],
-      p2:["UX & product design for AI (loading states, uncertainty, feedback)","Red-teaming & security testing","Cost optimization strategies"],
-      prove:"Capstone: deploy your RAG app or agent with full observability (tracing & metrics), an eval suite testing multiple scenarios, safety guardrails, and basic compliance documentation."
+      p2:["UX & product design for AI (loading states, uncertainty, feedback)","Governance & compliance basics","Red-teaming your own app"],
+      prove:"Capstone: deploy your RAG app or agent with tracing, an eval suite, and basic guardrails."
     },
-  ],
-};
-
   ],
 };
 
 /* =========================================================
    RENDERING
    ========================================================= */
-function esc(s){ return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+function esc(s){
+  return String(s ?? "")
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;");
+}
 
 function renderStation(st){
   const letters = "abcdefghijklmnopqrstuvwxyz";
-  const subsHtml = st.subs.map((sub,i)=>`
+  const subs = Array.isArray(st.subs) ? st.subs : [];
+  const phase2 = Array.isArray(st.p2) ? st.p2 : [];
+
+  const subsHtml = subs.map((sub,i)=>`
     <details class="sub" open>
       <summary>
-        <span class="sub-idx">${letters[i]}</span>
+        <span class="sub-idx">${letters[i] || i + 1}</span>
         <span class="sub-name">${esc(sub.name)}</span>
-        <span class="sub-count">${sub.topics.length} topics</span>
+        <span class="sub-count">${Array.isArray(sub.topics) ? sub.topics.length : 0} topics</span>
         <span class="sub-caret">▾</span>
       </summary>
       <div class="sub-body">
-        <ul class="topics">${sub.topics.map(t=>`<li>${esc(t)}</li>`).join("")}</ul>
+        <ul class="topics">${(Array.isArray(sub.topics) ? sub.topics : []).map(t=>`<li>${esc(t)}</li>`).join("")}</ul>
       </div>
     </details>`).join("");
 
-  const p2Html = (st.p2 && st.p2.length) ? `
+  const p2Html = phase2.length ? `
     <div class="p2-block">
       <div class="p2-label">Phase 2 — after your first project</div>
-      <ul class="topics p2">${st.p2.map(t=>`<li>${esc(t)}</li>`).join("")}</ul>
+      <ul class="topics p2">${phase2.map(t=>`<li>${esc(t)}</li>`).join("")}</ul>
     </div>` : "";
 
   const lite = st.lite ? ` <span class="lite">${esc(st.lite)}</span>` : "";
@@ -1180,7 +1129,7 @@ function renderStation(st){
   return `
   <div class="station">
     <div class="card">
-      <button class="station-head" onclick="toggleStation(this)" aria-expanded="false">
+      <button type="button" class="station-head" aria-expanded="false">
         <span class="station-code">${esc(st.code)}</span>
         <span class="station-title">${esc(st.title)}${lite}</span>
         <span class="station-meta">${esc(st.meta)}</span>
@@ -1197,8 +1146,14 @@ function renderStation(st){
 }
 
 function renderRail(id, stations){
-  document.getElementById(id).innerHTML = stations.map(renderStation).join("");
+  const rail = document.getElementById(id);
+  if(!rail) return;
+  rail.innerHTML = (Array.isArray(stations) ? stations : []).map(renderStation).join("");
 }
+renderRail("rail-stage0", ROADMAP.stage0);
+renderRail("rail-stage1", ROADMAP.stage1);
+renderRail("rail-ml", ROADMAP.ml);
+renderRail("rail-ai", ROADMAP.ai);
 
 /* =========================================================
    INTERACTION
@@ -1235,12 +1190,23 @@ function setFilter(which, btn){
   }
 }
 
-/* Initialize roadmap rendering after DOM is ready */
-document.addEventListener('DOMContentLoaded', function(){
-  renderRail("rail-stage0", ROADMAP.stage0);
-  renderRail("rail-stage1", ROADMAP.stage1);
-  renderRail("rail-ml", ROADMAP.ml);
-  renderRail("rail-ai", ROADMAP.ai);
+document.addEventListener('click', (event)=>{
+  const stationBtn = event.target.closest('.station-head');
+  if(stationBtn){
+    toggleStation(stationBtn);
+    return;
+  }
+
+  const filterBtn = event.target.closest('[data-filter]');
+  if(filterBtn){
+    setFilter(filterBtn.dataset.filter, filterBtn);
+    return;
+  }
+
+  const toggleBtn = event.target.closest('#toggleAllBtn');
+  if(toggleBtn){
+    toggleAll();
+  }
 });
 </script>
 </body>
