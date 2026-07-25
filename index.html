@@ -1,0 +1,1248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AI / ML Engineer Roadmap — 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F6F7F3;
+    --card:#FFFFFF;
+    --ink:#172033;
+    --muted:#5C6575;
+    --hairline:#E2E5DD;
+    --trunk:#0E8A74;
+    --trunk-soft:#E2F1ED;
+    --ml:#C93B54;
+    --ml-soft:#FBEAED;
+    --ai:#4A57D2;
+    --ai-soft:#EAECFB;
+    --p2:#8A93A3;
+    --radius:14px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--paper);color:var(--ink);
+    font-family:'IBM Plex Sans',system-ui,sans-serif;
+    font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1060px;margin:0 auto;padding:0 20px}
+
+  /* ---------- header ---------- */
+  header{padding:56px 0 28px}
+  .eyebrow{font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+  h1{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(34px,5.4vw,56px);line-height:1.04;letter-spacing:-.02em;margin:14px 0 16px}
+  h1 .ml-word{color:var(--ml)}
+  h1 .ai-word{color:var(--ai)}
+  .lede{max-width:620px;color:var(--muted);font-size:17px}
+  .facts{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+  .fact{font-family:'IBM Plex Mono',monospace;font-size:12.5px;border:1px solid var(--hairline);background:var(--card);border-radius:999px;padding:7px 14px;color:var(--ink)}
+  .fact b{font-weight:500;color:var(--trunk)}
+
+  /* ---------- toolbar ---------- */
+  .toolbar{position:sticky;top:0;z-index:30;background:color-mix(in srgb, var(--paper) 88%, transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--hairline);padding:10px 0;margin-top:26px}
+  .toolbar-inner{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .seg{display:flex;gap:6px}
+  .seg button,.util{font-family:'IBM Plex Mono',monospace;font-size:12.5px;border:1px solid var(--hairline);background:var(--card);color:var(--ink);border-radius:999px;padding:7px 14px;cursor:pointer}
+  .seg button[aria-pressed="true"]{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .seg button.f-ml[aria-pressed="true"]{background:var(--ml);border-color:var(--ml)}
+  .seg button.f-ai[aria-pressed="true"]{background:var(--ai);border-color:var(--ai)}
+  .util{margin-left:auto;color:var(--muted)}
+  .seg button:focus-visible,.util:focus-visible,.station-head:focus-visible,details.sub summary:focus-visible{outline:3px solid var(--ai);outline-offset:2px}
+  .legend{display:flex;gap:14px;flex-wrap:wrap;align-items:center;padding:10px 0 0;color:var(--muted);font-size:13px}
+  .chip-demo{display:inline-flex;align-items:center;gap:6px}
+  .dot{width:10px;height:10px;border-radius:50%;display:inline-block}
+
+  /* ---------- stages & rail ---------- */
+  .stage{padding:44px 0 8px}
+  .stage-label{display:flex;align-items:baseline;gap:14px;margin-bottom:6px;flex-wrap:wrap}
+  .stage-code{font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:.12em;color:#fff;background:var(--trunk);border-radius:6px;padding:3px 9px}
+  .stage h2{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:clamp(22px,3vw,30px);letter-spacing:-.01em}
+  .stage-time{font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:var(--muted)}
+  .stage p.note{color:var(--muted);max-width:640px;margin:4px 0 18px;font-size:15px}
+
+  .rail{position:relative;padding-left:34px}
+  .rail::before{content:"";position:absolute;left:10px;top:6px;bottom:6px;width:4px;background:var(--trunk);border-radius:4px;opacity:.9}
+  .rail.rail-ml::before{background:var(--ml)}
+  .rail.rail-ai::before{background:var(--ai)}
+
+  .station{position:relative;margin-bottom:14px}
+  .station::before{content:"";position:absolute;left:-30px;top:22px;width:16px;height:16px;border-radius:50%;background:var(--card);border:4px solid var(--trunk)}
+  .rail-ml .station::before{border-color:var(--ml)}
+  .rail-ai .station::before{border-color:var(--ai)}
+
+  .card{background:var(--card);border:1px solid var(--hairline);border-radius:var(--radius);overflow:hidden}
+  .station-head{width:100%;display:flex;align-items:center;gap:12px;text-align:left;background:none;border:none;cursor:pointer;padding:16px 18px;font:inherit;color:inherit}
+  .station-code{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--muted);min-width:56px}
+  .station-title{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:18.5px;letter-spacing:-.01em;flex:1}
+  .station-title .lite{font-weight:400;font-size:13px;color:var(--muted)}
+  .station-meta{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--muted);white-space:nowrap}
+  .caret{width:22px;height:22px;flex:none;border-radius:50%;border:1.5px solid var(--hairline);display:grid;place-items:center;color:var(--muted);font-size:12px;transition:transform .18s ease}
+  .station.open .caret{transform:rotate(180deg)}
+  .station-body{display:none;padding:0 18px 18px 18px;border-top:1px dashed var(--hairline)}
+  .station.open .station-body{display:block}
+  .station-body .why{color:var(--muted);font-size:14px;margin:12px 0 14px;max-width:680px}
+
+  /* ---------- sub-modules (level 2) ---------- */
+  details.sub{border:1px solid var(--hairline);border-radius:10px;margin-bottom:10px;background:var(--paper);overflow:hidden}
+  details.sub summary{
+    list-style:none;display:flex;align-items:center;gap:10px;
+    padding:10px 14px;cursor:pointer;user-select:none;
+  }
+  details.sub summary::-webkit-details-marker{display:none}
+  .sub-idx{
+    font-family:'IBM Plex Mono',monospace;font-size:11px;color:#fff;
+    background:var(--trunk);border-radius:5px;padding:2px 7px;flex:none;
+  }
+  .rail-ml .sub-idx{background:var(--ml)}
+  .rail-ai .sub-idx{background:var(--ai)}
+  .sub-name{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:15px;flex:1}
+  .sub-count{font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:var(--muted);white-space:nowrap}
+  .sub-caret{color:var(--muted);font-size:11px;transition:transform .18s ease}
+  details.sub[open] .sub-caret{transform:rotate(180deg)}
+  details.sub > .sub-body{padding:2px 14px 13px}
+
+  /* ---------- topic chips (level 3) ---------- */
+  ul.topics{list-style:none;display:flex;flex-wrap:wrap;gap:7px}
+  ul.topics li{font-size:13.5px;border:1px solid var(--hairline);border-radius:999px;padding:5px 12px;background:var(--card)}
+  ul.topics li::before{content:"● ";font-size:8px;vertical-align:2px;color:var(--trunk)}
+  .rail-ml ul.topics li::before{color:var(--ml)}
+  .rail-ai ul.topics li::before{color:var(--ai)}
+
+  .p2-block{margin-top:14px}
+  .p2-label{font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--p2);margin-bottom:8px}
+  ul.topics.p2 li{border-style:dashed;color:var(--p2);background:transparent}
+  ul.topics.p2 li::before{content:"◌ ";color:var(--p2)}
+
+  .prove{margin-top:14px;font-size:13.5px;color:var(--ink);background:var(--trunk-soft);border-radius:10px;padding:10px 14px}
+  .rail-ml .prove{background:var(--ml-soft)}
+  .rail-ai .prove{background:var(--ai-soft)}
+  .prove b{font-family:'IBM Plex Mono',monospace;font-weight:500;font-size:12px;letter-spacing:.08em;text-transform:uppercase;margin-right:6px}
+
+  /* ---------- fork ---------- */
+  .fork{padding:52px 0 8px;text-align:center}
+  .fork svg{display:block;margin:0 auto}
+  .fork h2{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(24px,3.4vw,34px);letter-spacing:-.015em;margin-top:6px}
+  .fork p{color:var(--muted);max-width:560px;margin:10px auto 0;font-size:15.5px}
+  .branches{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:34px}
+  .branch-head{border-radius:var(--radius);padding:18px 20px;color:#fff;margin-bottom:20px}
+  .branch-head.bh-ml{background:var(--ml)}
+  .branch-head.bh-ai{background:var(--ai)}
+  .branch-head .eyebrow{color:rgba(255,255,255,.75)}
+  .branch-head h3{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:23px;letter-spacing:-.01em;margin:4px 0 6px}
+  .branch-head p{font-size:14px;color:rgba(255,255,255,.9)}
+  .branch-head .bh-time{font-family:'IBM Plex Mono',monospace;font-size:12px;margin-top:10px;color:rgba(255,255,255,.85)}
+  .branches .station-title{font-size:17px}
+
+  /* ---------- rules ---------- */
+  .rules{padding:60px 0 70px}
+  .rules h2{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:26px;letter-spacing:-.01em;margin-bottom:18px}
+  .rule-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .rule{background:var(--card);border:1px solid var(--hairline);border-radius:var(--radius);padding:18px}
+  .rule .rn{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--trunk);letter-spacing:.1em}
+  .rule h4{font-family:'Space Grotesk',sans-serif;font-size:16.5px;margin:8px 0 6px}
+  .rule p{font-size:14px;color:var(--muted)}
+  .fineprint{margin-top:26px;font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--muted)}
+
+  @media (max-width:860px){
+    .branches{grid-template-columns:1fr}
+    .rule-grid{grid-template-columns:1fr}
+    .station-meta{display:none}
+  }
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    .caret,.sub-caret{transition:none}
+  }
+</style>
+</head>
+<body>
+
+<header class="wrap">
+  <div class="eyebrow">Career roadmap · 2026 edition · students &amp; freshers</div>
+  <h1>One map.<br>Two destinations: <span class="ml-word">ML&nbsp;Engineer</span> or <span class="ai-word">AI&nbsp;Engineer</span>.</h1>
+  <p class="lede">
+    Everyone walks the same trunk line first — prerequisites, then core machine learning.
+    Only after that do you choose a branch. Click a station to open it, then explore each module inside.
+  </p>
+  <div class="facts">
+    <span class="fact"><b>2</b> shared stages</span>
+    <span class="fact"><b>2</b> career branches</span>
+    <span class="fact"><b>75+</b> modules, <b>350+</b> topics</span>
+    <span class="fact"><b>~9–12</b> months at 10–15 hrs/week</span>
+  </div>
+</header>
+
+<div class="toolbar">
+  <div class="wrap toolbar-inner">
+    <div class="seg" role="group" aria-label="Filter branches">
+      <button class="f-all" aria-pressed="true" onclick="setFilter('all',this)">Show both paths</button>
+      <button class="f-ml" aria-pressed="false" onclick="setFilter('ml',this)">ML Engineer</button>
+      <button class="f-ai" aria-pressed="false" onclick="setFilter('ai',this)">AI Engineer</button>
+    </div>
+    <button class="util" onclick="toggleAll()" id="toggleAllBtn">Expand all stations</button>
+  </div>
+  <div class="wrap legend">
+    <span class="chip-demo"><span class="dot" style="background:var(--trunk)"></span> Shared trunk</span>
+    <span class="chip-demo"><span class="dot" style="background:var(--ml)"></span> ML Engineer branch</span>
+    <span class="chip-demo"><span class="dot" style="background:var(--ai)"></span> AI Engineer branch</span>
+    <span class="chip-demo">● Core topic &nbsp;·&nbsp; ◌ Phase 2 (learn after your first project)</span>
+  </div>
+</div>
+
+<!-- STAGE 00 -->
+<section class="wrap stage">
+  <div class="stage-label">
+    <span class="stage-code">STAGE 00</span>
+    <h2>Prerequisites</h2>
+    <span class="stage-time">≈ 6–8 weeks</span>
+  </div>
+  <p class="note">The tools every ML or AI engineer uses daily. Don't aim for mastery here — aim for comfort, then move on. You'll keep sharpening these forever.</p>
+  <div class="rail" id="rail-stage0"></div>
+</section>
+
+<!-- STAGE 01 -->
+<section class="wrap stage">
+  <div class="stage-label">
+    <span class="stage-code">STAGE 01</span>
+    <h2>Machine Learning Core</h2>
+    <span class="stage-time">≈ 8–10 weeks</span>
+  </div>
+  <p class="note">Still shared by both paths — yes, even future AI engineers. You cannot evaluate, debug, or design AI systems without these instincts.</p>
+  <div class="rail" id="rail-stage1"></div>
+</section>
+
+<!-- FORK -->
+<section class="wrap fork" id="fork">
+  <svg width="240" height="120" viewBox="0 0 240 120" aria-hidden="true">
+    <path d="M120 0 V44" stroke="var(--trunk)" stroke-width="6" stroke-linecap="round"/>
+    <path d="M120 44 C120 70, 60 74, 60 112" stroke="var(--ml)" stroke-width="6" fill="none" stroke-linecap="round"/>
+    <path d="M120 44 C120 70, 180 74, 180 112" stroke="var(--ai)" stroke-width="6" fill="none" stroke-linecap="round"/>
+    <circle cx="120" cy="44" r="9" fill="var(--paper)" stroke="var(--ink)" stroke-width="4"/>
+    <circle cx="60" cy="112" r="7" fill="var(--ml)"/>
+    <circle cx="180" cy="112" r="7" fill="var(--ai)"/>
+  </svg>
+  <h2>The fork: pick one branch</h2>
+  <p>
+    Both are real, hiring-in-2026 careers. <strong style="color:var(--ml)">ML Engineers</strong> build and ship models trained on data.
+    <strong style="color:var(--ai)">AI Engineers</strong> build products on top of large language models.
+    Pick the one that excites you — you can always cross over later, because the trunk is shared.
+  </p>
+
+  <div class="branches">
+    <div class="branch branch-ml" data-branch="ml">
+      <div class="branch-head bh-ml">
+        <div class="eyebrow">Branch A</div>
+        <h3>ML Engineer</h3>
+        <p>Train, evaluate and productionize models — deep learning, system design, and MLOps.</p>
+        <div class="bh-time">≈ 4–6 months after the trunk</div>
+      </div>
+      <div class="rail rail-ml" id="rail-ml"></div>
+    </div>
+
+    <div class="branch branch-ai" data-branch="ai">
+      <div class="branch-head bh-ai">
+        <div class="eyebrow">Branch B</div>
+        <h3>AI Engineer</h3>
+        <p>Build products on top of LLMs — RAG systems, agents, and production LLM apps.</p>
+        <div class="bh-time">≈ 4–6 months after the trunk</div>
+      </div>
+      <div class="rail rail-ai" id="rail-ai"></div>
+    </div>
+  </div>
+</section>
+
+<!-- RULES -->
+<section class="wrap rules">
+  <h2>How to use this map</h2>
+  <div class="rule-grid">
+    <div class="rule">
+      <div class="rn">RULE 01</div>
+      <h4>Finish the trunk before you choose</h4>
+      <p>Prerequisites and ML Core are non-negotiable for both paths. Skipping them is why most self-taught journeys stall.</p>
+    </div>
+    <div class="rule">
+      <div class="rn">RULE 02</div>
+      <h4>One project per station</h4>
+      <p>Every station has a "Prove it". Tutorials don't get you hired — a GitHub full of small, finished projects does.</p>
+    </div>
+    <div class="rule">
+      <div class="rn">RULE 03</div>
+      <h4>Phase 2 comes later — on purpose</h4>
+      <p>Dashed ◌ topics are deliberately deferred. Return to them after your first capstone, or when a job description demands them.</p>
+    </div>
+  </div>
+  <p class="fineprint">
+    Realistic pace: 10–15 hrs/week → trunk in ~4 months, branch in ~4–6 more. Faster is possible; slower is fine. Consistency beats intensity. · 2026 edition
+  </p>
+</section>
+
+<script>
+/* =========================================================
+   ROADMAP DATA — three levels:
+   station → subs (modules) → topics
+   ========================================================= */
+const ROADMAP = {
+
+  stage0: [
+    {
+      code:"P·01", title:"Python", meta:"2–3 wks",
+      why:"The language of the entire field. Everything after this stage assumes you can write clean Python.",
+      subs:[
+        { name:"Python Core Fundamentals", topics:[
+          "Python syntax, indentation, code style (PEP8)", "Variables & data types","Operators & expressions","Conditionals (if / elif / else)",
+          "Loops (for, while)","Functions, arguments, *args & **kwargs","Scope & namespaces",
+          "Strings & f-strings","Basic input / output"
+        ]},
+        { name:"Built-in Data Structures", topics:[
+          "Lists & list methods","Tuples","Dictionaries","Sets",
+          "List / dict / set comprehensions","Indexing & slicing","Iterators & Generators", "deep and shallow copies"
+        ]},
+        { name:"OOP & Modular Code", topics:[
+          "Classes & objects","Attributes & methods","__init__ and __repr__",
+          "Inheritance (basics)","Modules & packages","Imports & project structure", "Dataclasses(@dataclass)"
+        ]},
+        { name:"Files, Errors & Data Formats", topics:[
+          "Reading & writing text files","Working with CSV","Working with JSON", "Pickle & joblib", "Working with directories (os, pathlib)",
+          "try / except / finally","Raising exceptions","Context managers (with)", "Common runtime and compile time errors"
+        ]},
+        { name:"Environment & Tooling", topics:[
+          "pip & requirements.txt","Virtual environments (venv)","conda (awareness)",
+          "Jupyter notebooks","Code style (PEP 8)"
+        ]},
+
+        { name:"Modules, Packages & Environments", topics:[
+          "Import system (import, from, as)","Creating modules and packages",
+          "Virtual environments (venv, conda)","Dependency management (pip, requirements.txt, poetry)",
+          "Understanding __main__"
+        ]},
+
+        { name:"NumPy", topics:[
+          "Arrays & dtypes","Indexing & slicing arrays","Broadcasting",
+          "Vectorized operations","Aggregations (sum, mean, axis)","Random number generation"
+        ]},
+        { name:"Pandas", topics:[
+          "Series & DataFrames","Reading data (CSV / Excel / SQL)","Selecting & filtering (loc / iloc)",
+          "GroupBy & aggregation","Merge, join & concat","Handling missing data",
+          "Datetime handling","apply vs vectorized operations"
+        ]},
+        { name:"Data Visualization (Essential)", topics:[
+          "Matplotlib","Seaborn","Plot types for EDA"
+        ]},
+        { name:"Other Python Libraries", topics:[
+          "FastAPI","Pydantic", "async/await"
+        ]},
+
+      ],
+      p2:["Decorators & generators","Type hints","Testing with pytest","Logging","Async basics","Packaging your code"],
+      prove:"Clean a messy real-world CSV with Pandas — handle missing values, fix types, output a tidy dataset — and push the script to GitHub."
+    },
+    {
+      code:"P·02", title:"SQL", meta:"1–2 wks",
+      why:"Most real-world data lives in databases. SQL questions appear in nearly every ML/AI interview.",
+      subs:[
+        {name: "SQL Fundamentals", topics:[
+        "What SQL is & why databases exist","Relational database concepts",
+        "Tables, rows, columns","Primary key vs foreign key",
+        "Basic SQL syntax & formatting", "Data Manipulation (DML)","INSERT","UPDATE","DELETE","UPSERT (ON CONFLICT)","Transactions (BEGIN, COMMIT, ROLLBACK)"
+        ]},
+
+        { name:"Table Design & Schema Basics", topics:[
+          "Creating tables (CREATE TABLE)","PRIMARY KEY","FOREIGN KEY","UNIQUE","NOT NULL","CHECK",
+          "Indexes (conceptual + practical)","Normalization basics (1NF, 2NF, 3NF)","Denormalization (when & why)"
+        ]},
+        
+        { name:"SQL Must (Core Querying)", topics:[
+          "SELECT & FROM","WHERE & filtering","ORDER BY & LIMIT","DISTINCT",
+          "Column aliases","NULL handling (IS NULL, COALESCE)"
+        ]},
+
+        { name:"Aggregation & Grouping", topics:[
+          "COUNT / SUM / AVG / MIN / MAX","GROUP BY","HAVING vs WHERE","CASE WHEN", "LIMIT/OFFSET", "Aliases (AS)"
+        ]},
+
+        { name:"Filtering & Conditions", topics:[
+          "Comparison operators (=, !=, <, >, BETWEEN)",
+          "Logical operators (AND, OR, NOT)",
+          "IN, NOT IN",
+          "LIKE, ILIKE",
+          "IS NULL, IS NOT NULL",
+          "Case expressions (CASE WHEN)"
+        ]},
+
+        { name:"Joins & Set Operations", topics:[
+          "INNER JOIN","LEFT / RIGHT JOIN","FULL OUTER JOIN","Self joins","UNION vs UNION ALL", "Join Condition and Join Keys"
+        ]},
+        { name:"Intermediate SQL: Subqueries, CTEs & Window Functions", topics:[
+          "Subqueries", "Correlated Subqueries", "CTEs (WITH clause)","When to use CTEs vs subqueries", "Window functions: OVER() clause, PARTITION BY, ORDER BY in windows function, Ranking functions: ROW_NUMBER, RANK","LAG / LEAD & running totals",
+          "Date functions","String functions"
+        ]},
+        { name:"Databases Every AI Engineer Should Touch", topics:[
+          "PostgreSQL",
+          "SQLite",
+          "MySQL",
+          "Cloud warehouses (BigQuery / Redshift / Snowflake – awareness)"
+        ]},
+        { name:"SQL + Python Integration", topics:[
+          "Running SQL from Python",
+          "sqlite3, psycopg2, sqlalchemy",
+          "Pandas + SQL workflows",
+          "Writing parameterized queries",
+          "Avoiding SQL injection"
+        ]},
+
+      ],
+      p2:["Indexes & EXPLAIN / query plans","Normalization basics","Transactions & ACID","One real warehouse (Postgres / Snowflake / BigQuery)"],
+      prove:"Answer 10 business questions on a public dataset using only SQL — at least three must need a join and one a window function."
+    },
+    {
+      code:"P·03", title:"Mathematics", meta:"2–3 wks, in parallel",
+      why:"You need intuition, not proofs. Learn just enough to understand why models behave the way they do.",
+      subs:[
+        { name:"Linear Algebra", topics:[
+          "Scalars, vectors, matrices, tensors","Matrix operations & multiplication","Dot product & vector norms",
+          "Identity & inverse matrices","Rank of matrices","System of Linear Equations", "Identity, transpose & inverse","Linear transformations (intuition)",
+          "Eigenvalues & eigenvectors (intuition + usage)", "Norms & distances (L1, L2)"
+        ]},
+        { name:"Calculus for ML", topics:[
+          "Functions & limits (intuition)","Derivatives & partial derivatives","Gradients",
+          "Chain rule(very important)","Local and Global minima", "Convex vs non-convex functions"
+        ]},
+        { name:"Probability Theory (Uncertainty Handling)", topics:[
+          "Random variables","Discrete Vs Continuous","Probability Distribution","Common distributions (normal, binomial, uniform, poisson)","Conditional probability",
+          "Bayes' theorem","Expectation & variance"
+        ]},
+        { name:"Statistics (From Data to Decisions)", topics:[
+          "Population Vs Sample","Mean, median, mode, variance, std","Correlation and Covariance","Sampling & the Central Limit Theorem (intuition)",
+          "Confidence intervals","Hypothesis testing & p-values (basics)", "Outliers & robustness"
+        ]},
+        { name:"Geometry & Distance Measures", topics:[
+          "Euclidean distance",
+          "Manhattan distance",
+          "Cosine similarity",
+          "Angle between vectors",
+          "High-dimensional intuition (curse of dimensionality)"
+        ]},
+      ],
+      p2:["Eigenvalues & eigenvectors","SVD & the math behind PCA","Entropy, cross-entropy & KL divergence","Maximum likelihood estimation"],
+      prove:"Implement gradient descent on a simple function in pure NumPy — no ML libraries — and plot the loss going down."
+    },
+    {
+      code:"P·04", title:"Software Essentials", meta:"1 wk, then ongoing",
+      why:"What separates an \"engineer\" from a \"notebook user\". Recruiters check your GitHub before your CV.",
+      subs:[
+        { name:"Version Control (Git & GitHub)", topics:[
+          "Git fundamentals","Branching & merging","Push, pull & remotes",
+          "Pull requests & code review","Resolving merge conflicts",".gitignore & repo hygiene"
+        ]},
+        { name:"Command Line & Linux", topics:[
+          "Navigation (cd, ls, pwd)","File operations (cp, mv, rm, mkdir)","grep, cat, head / tail",
+          "Pipes & redirection","SSH basics","Environment variables"
+        ]},
+        { name:"Dev Environment", topics:[
+          "VS Code setup & key extensions","Dependency management, environmental variables", "Project Structure",
+          "Debugging basics (breakpoints, print-debugging)","Markdown & writing a good README"
+        ]},
+        { name:"Working with APIs & Data Formats", topics:[
+          "What a REST API is","HTTP methods (GET / POST) and status codes","JSON structure handling & parsing",
+          "Calling APIs with requests","Error and rate handling"
+        ]},
+      ],
+      p2:["DSA basics for AI: Big-O, arrays, hashmaps, common patterns","HTTP status codes & headers in depth","Regular expressions"],
+      prove:"From now on, every project lives in a Git repo with a README, meaningful commits, and no secrets in the code."
+    },
+    {
+      code:"P·05", title:"Cloud Fundamentals", meta:"1 wk",
+      why:"Models don't run on laptops in production. Pick one provider (AWS is the safest default) and learn the basics.",
+      subs:[
+        { name:"Cloud Concepts Basics", topics:[
+            "What the cloud is & why companies use it","IaaS vs PaaS vs SaaS","Serverless (concept): public, private and hybrid clouds",
+            "Regions & availability zones","Shared responsibility model"
+        ]},
+        { name:"Cloud Providers Awareness", topics:[
+            "AWS","Google Cloud Platform (GCP)","Microsoft Azure"
+        ]},
+        { name:"Core Services (one provider)", topics:[
+          "Object storage: S3 buckets & objects","Compute: EC2 instances (launch, SSH in)",
+          "Serverless functions: Lambda","IAM: users, roles & policies", "Managed databases: RDS / DynamoDB / Aurora", "Monitoring & logging basics (CloudWatch / Stackdriver)"
+        ]},
+        { name:"Cloud from Python", topics:[
+          "boto3 basics","Upload / download files to S3","Credentials & environment configuration"
+        ]},
+        { name:"Compute Fundamentals", topics:[
+          "Virtual machines","Containers (conceptual)","Auto-scaling","Load balancing","Serverless computing"
+        ]},
+        { name:"Containers & Orchestration (Awareness)", topics:[
+          "Docker fundamentals","Container images","Container registries"
+        ]},
+        { name:"Cloud for AI Workloads", topics:[
+          "GPU and accelerator instances","Batch vs real-time inference",
+          "Model deployment patterns","Data storage for ML pipelines"
+        ]},
+      ],
+      p2:["Managed ML platforms (SageMaker / Bedrock / Vertex AI)","Billing & cost monitoring","VPC & networking basics","Cloud CLI tools"],
+      prove:"Upload a dataset to S3 and read it back from a Python script running on your machine."
+    },
+  ],
+
+  stage1: [
+    {
+      code:"M·01", title:"ML Fundamentals", meta:"2 wks",
+      why:"The vocabulary and mental model of the whole field. Every later topic assumes this.",
+      subs:[
+        { name:"What Machine Learning Is", topics:[
+          "ML Vs Statistics vs Rules-based Systems", "AI vs ML vs Deep Learning vs Data Science","Supervised learning","Unsupervised learning",
+          "Reinforcement learning (concept only)","Classification vs regression","The end-to-end ML workflow"
+        ]},
+        { name:"Generalization & Data Splitting", topics:[
+          "Train / validation / test splits - why splitting data matters", "k-fold cross-validation","Data leakage & why it ruins models","Cross-validation(conceptual, not math-heavy)",
+          "Overfitting vs underfitting","Bias–variance tradeoff"
+        ]},
+        { name:"Model Concept (Very Important)", topics:[
+          "What is a model?","Parameters vs hyperparameters","Hypothesis space intuition",
+          "Decision boundaries (visual intuition)","Linear vs non-linear models (conceptual)", "Blindly trusting metrics"
+        ]},
+        { name:"Loss Functions (Optimization Target)", topics:[
+          "What is a loss function?","Loss vs error vs metric",
+          "Regression losses (MAE, MSE – intuition)","Classification losses (log loss – intuition)",
+          "Why models minimize loss, not accuracy","Average loss over dataset"
+        ]},
+        { name:"Evaluation Metrics", topics:[
+          "Confusion matrix","Accuracy — and why it misleads","Precision, recall & F1",
+          "ROC curve & AUC","Regression metrics: MAE, MSE, RMSE, R²","Choosing the right metric for the problem"
+        ]},
+      ],
+      p2:["Precision–recall curves & threshold tuning","Probability calibration","Cost-sensitive evaluation"],
+      prove:"Explain precision vs recall to a friend using a real example (spam, fraud, disease screening) — if you can't, revisit."
+    },
+    {
+      code:"M·02", title:"Feature Engineering", meta:"2 wks",
+      why:"In practice, better features beat fancier models. This is where most real-world model quality comes from.",
+      subs:[
+        { name:"What Feature Engineering Really Is", topics:[
+          "What is a feature?","Raw data vs features","Feature engineering vs feature selection",
+          "Why models don’t “understand” raw data","Feature engineering as signal extraction",
+          "When feature engineering matters more than algorithms","Understanding the data & domain knowledge : numerical, categorical, ordinal, text, date/time"
+        ]},
+        { name:"Data Cleaning: Missing Values Handling", topics:[
+          "Identifying missing values","Imputation strategies (mean / median / mode / constant)",
+          "Dropping vs imputing — the tradeoff","Duplicates","Inconsistent categories & typos","Outlier detection & treatment - removal vs transformation"
+        ]},
+        { name:"Encoding & Scaling & Normalization", topics:[
+          "Label encoding","One-hot encoding","Ordinal encoding","Feature magnitude vs importance","Standardization (z-score)",
+          "Min-max scaling","Which models need scaling — and which don't"
+        ]},
+        { name:"Feature Creation & Selection", topics:[
+          "Why transform features?", "Different types of transformation techniques","Binning numeric features","Date / time features","Simple text features (length, counts)",
+          "Interaction features","Robust scaling and why is it necessary","Why fewer features can be better", "Redundant vs informative features", "Correlation-based selection","Importance-based selection",
+          "Dimensionality reduction (conceptual)","Feature selection with regularization (L1, L2)"
+        ]},
+        { name:"Text Feature Engineering (Intro Level)", topics:[
+          "Why text needs special handling","Text cleaning basics","Tokenization (conceptual)",
+          "Bag of Words intuition","TF-IDF intuition","When feature engineering gives way to embeddings",
+          "What is deferred to NLP section"
+        ]},
+        { name:"Feature Engineering Pitfalls (Must-Know)", topics:[
+          "Data leakage through features",
+          "Encoding using full dataset",
+          "Scaling using test data",
+          "Over-engineering features",
+          "Feature explosion",
+          "Ignoring domain knowledge"
+        ]},
+      ],
+      p2:["Target / mean encoding & its leakage risks","PCA & dimensionality reduction","Embeddings as features","Automated feature tools (awareness)"],
+      prove:"Take a raw Kaggle dataset and build a clean, documented feature pipeline using sklearn Pipeline + ColumnTransformer."
+    },
+    {
+      code:"M·03", title:"ML Algorithms", meta:"3 wks",
+      why:"Learn how each algorithm thinks and when to reach for it — the scikit-learn workflow makes them all feel the same.",
+      subs:[
+        { name:"Linear Models", topics:[
+          "Linear regression: how it fits & its assumptions - Single and Multiple","Polynomial Regression",
+          "Regularization: Ridge (L2)","Regularization: Lasso (L1)","Elastic Net"
+        ]},
+        { name:"Classification Algorithms", topics:[
+          "Logistic Regression","k-Nearest Neighbors (kNN)","Naive Bayes",
+          "Gaussian Naive Bayes","Multinomial Naive Bayes","Bernoulli Naive Bayes"
+        ]},
+        { name:"Tree-Based Models", topics:[
+          "Decision trees: splits, gini / entropy","Pruning & max depth","Random forests: bagging & OOB score",
+          "Gradient boosting (concept)","XGBoost / LightGBM in practice","Feature importance from trees"
+        ]},
+        { name:"Distance & Clustering - Unsupervised Learning Algorithms", topics:[
+          "K-Nearest Neighbors","Distance metrics & the curse of dimensionality",
+          "K-Means clustering","Choosing k: elbow & silhouette",
+          "DBSCAN & hierarchical clustering"
+        ]},
+        { name:"Dimensionality Reduction", topics:[
+          "Principal Component Analysis (PCA)","Kernel PCA"
+        ]},
+        { name:"The scikit-learn Workflow", topics:[
+          "Estimator API: fit / predict / transform","Pipelines & ColumnTransformer",
+          "Cross-validation helpers","Model persistence (joblib)"
+        ]},
+      ],
+      p2:["SVM & kernel intuition","Naive Bayes","DBSCAN & hierarchical clustering","Anomaly detection (Isolation Forest)"],
+      prove:"Beat a sensible baseline on one Kaggle competition and write up what worked and what didn't."
+    },
+    {
+      code:"M·04", title:"ML Advanced Topics", meta:"2–3 wks",
+      why:"The gap between \"I trained a model\" and \"I trained a model I can defend in front of a team.\"",
+      subs:[
+        { name:"Model Evaluation & Tuning", topics:[
+          "Hyperparameter Optimization: Grid search & random search","Bayesian optimization","Tuning with cross-validation. strategies",
+          "Never tune on the test set"
+        ]},
+
+        { name:"Real-World Data Problems", topics:[
+          "Imbalanced classes problem: oversampling & undersampling, class weighting","Imbalanced classes: SMOTE & resampling","Threshold moving",
+          "Small datasets & what to do about them","Noisy labels (awareness)"
+        ]},
+        { name:"Interpretability & Explainability", topics:[
+          "Global vs local explanations","Impurity vs permutation importance","SHAP values",
+          "Partial dependence (concept)","Communicating results to non-technical people"
+        ]},
+        { name:"Model Selection & Comparison", topics:[
+          "Bias vs variance driven selection","Metric-driven model choice","Statistical significance testing"
+        ]},
+      ],
+      p2:["Ensembling & stacking","Time series forecasting basics (lags, rolling features, backtesting)","Recommender basics (collaborative filtering)","AutoML awareness"],
+      prove:"One complete portfolio project: problem → data → features → tuned model → SHAP explanation → written report."
+    },
+  ],
+
+  ml: [
+    {
+      code:"ML·01", title:"End to End Projects", meta:"6–8 wks",
+      why:"Apply everything you've learned to real-world problems. Building complete end-to-end systems is what separates practitioners from engineers.",
+      subs:[
+        { name:"Recommendation Systems", topics:[
+          "Movie Recommendation System (Netflix-style)","E-commerce Product Recommendation (Amazon-style)",
+          "Online Course Recommendation","News / Content Feed Ranking","Music Playlist Recommendation"
+        ]},
+        { name:"Prediction & Forecasting", topics:[
+          "House Price Prediction","Stock Price Movement Prediction","Sales Forecasting System",
+          "Demand Forecasting for Inventory","Energy Consumption Forecasting"
+        ]},
+        { name:"Classification Systems", topics:[
+          "Spam Email Detection","Credit Card Fraud Detection","Loan Default Prediction",
+          "Customer Churn Prediction","Fake News Detection"
+        ]},
+        { name:"Computer Vision (Classical ML / Intro DL)", topics:[
+          "Handwritten Digit Recognition","Product Image Classification","Traffic Sign Recognition"
+        ]},
+        { name:"NLP-Based Systems", topics:[
+          "Sentiment Analysis System","Resume Screening System","News Article Categorization",
+          "Text Similarity / Duplicate Detection"
+        ]},
+        { name:"Anomaly & Risk Detection", topics:[
+          "Fraud Detection System","Network Intrusion Detection","Insurance Claim Anomaly Detection",
+          "Manufacturing Fault Detection"
+        ]},
+        { name:"Customer & Business Intelligence", topics:[
+          "Customer Segmentation System","Market Basket Analysis","Customer Lifetime Value Prediction",
+          "User Behavior Analytics"
+        ]},
+        { name:"Healthcare & Social Impact", topics:[
+          "Disease Risk Prediction","Medical Cost Prediction"
+        ]},
+        { name:"Famous \"Interview Classic\" Projects", topics:[
+          "House Price Prediction","Titanic Survival Prediction","Customer Churn Prediction",
+          "Credit Risk Modeling","Recommendation System"
+        ]},
+      ],
+      p2:["Multi-stage pipelines","Real-time decision systems","A/B testing projects"],
+      prove:"Complete 2–3 end-to-end projects from problem statement through deployment. Push all to GitHub with thorough documentation and live demos."
+    },
+    {
+      code:"ML·02", title:"Deep Learning", meta:"6–8 wks",
+      why:"The engine behind modern vision, language and speech. Learn PyTorch by building, not by watching.",
+      subs:[
+        { name:"Neural Network Foundations", topics:[
+          "Perceptron & artificial neurons","Layers & the multilayer perceptron (MLP)",
+          "Activation functions: ReLU, sigmoid, tanh, softmax","Loss functions: MSE, cross-entropy",
+          "Forward pass","Backpropagation (chain rule intuition)","Gradient descent & mini-batches", "Vanishing / exploding gradients (why it happens)"
+        ]},
+        { name:"Optimizing Neural Networks", topics:[
+          "Optimizers: SGD, momentum, Adam","Learning rate & schedules: Step decay, cosine decay, warmup","Weight initialization",
+          "L2 regularization & dropout","Batch normalization","Early stopping","Gradient Clipping", "Regularization techniques (L1, L2, Dropout, Data Augmentation)",
+          "Hyperparameter tuning basics (learning rate, batch size, depth)"
+        ]},
+        { name:"PyTorch", topics:[
+          "Tensors fundamentals & GPU usage","Tensor Operations using Pytorch","Autograd: Backpropagation, Gradient Tracking, automatic differentiation","Dataset & DataLoader","nn.Module & building models",
+          "Writing training / validation loops","Model Evaluation","Saving & loading checkpoints","torchvision basics", "Model Versioning"
+        ]},
+        { name:"CNNs & Transfer Learning", topics:[
+          "Convolutions, filters & feature maps","Pooling, stride & padding",
+          "Classic architectures: LeNet → ResNet (the story), Inception Modules and MobileNet","Transfer learning & fine-tuning pretrained models - Freeing/Unfreezing Layers", 
+          "Vision Transformers (ViT) - Vs  CNN Tradeoffs ",
+          "Data augmentation"
+        ]},
+        { name:"Sequence & Seq-to-Seq Models", topics:[
+          "Why sequences need different models","RNNs & their limitations","LSTM / GRU", 
+          "Seq-to-seq (encoder–decoder)"
+        ]},
+        { name:"Transformer Architecture (Entire, End-to-End)", topics:[
+          "Why Transformers replaced RNNs",
+          "Self-attention",
+          "Scaled dot-product attention",
+          "Multi-head attention",
+          "Positional encoding / embeddings",
+          "Feed-forward network block (FFN)",
+          "Residual connections + LayerNorm",
+          "Encoder stack vs decoder stack",
+          "Decoder masking (causal mask)",
+          "Cross-attention (encoder-decoder attention)",
+          "Training objective intuition (next-token prediction for decoder-style)",
+          "Complexity intuition (why attention is expensive for long sequences)"
+        ]},
+        { name:"Transformer Variants (high-level)", topics:[
+          "Encoder-only (BERT-style)",
+          "Decoder-only (GPT-style)",
+          "Encoder-decoder (T5-style)"
+        ]},
+        { name:"Applied Deep Learning", topics:[
+          "NLP with DL: text classification with embeddings / transformers",
+          "CV with DL: image classification via transfer learning",
+          "Time series with DL: forecasting with LSTMs"
+        ]},
+      ],
+      p2:["Implementing a transformer from scratch","Mixed-precision & GPU efficiency","Learning-rate finders & tuning at scale","Self-supervised learning (awareness)"],
+      prove:"Train an image classifier with transfer learning in PyTorch — log the training curves and explain every choice in the README."
+    },
+    {
+      code:"ML·03", title:"NLP", meta:"3–4 wks",
+      why:"Text is the most common data type in industry. Classic NLP still powers search, classification and pipelines everywhere.",
+      subs:[
+        { name:"Text Processing", topics:[
+          "Tokenization: word & subword","Lowercasing & text cleaning","Stop words",
+          "Stemming vs lemmatization","Regex for text","Multilingual text considerations"
+        ]},
+        { name:"Text Representation", topics:[
+          "Bag of Words","TF-IDF","n-grams","Word embeddings: Word2Vec & GloVe",
+          "Static vs contextual embeddings (concept)"
+        ]},
+        { name:"The NLP Pipeline", topics:[
+          "End-to-end text classification project","Evaluation & error analysis on text",
+          "Hugging Face: pipeline API","Hugging Face: tokenizers & pretrained models"
+        ]},
+      ],
+      p2:["NER & sequence labeling","Fine-tuning transformers (BERT-style)","Sentence embeddings & semantic search","Topic modeling"],
+      prove:"Build a sentiment or spam classifier twice — once with TF-IDF + logistic regression, once with a pretrained transformer — and compare honestly."
+    },
+    {
+      code:"ML·04", title:"Computer Vision", lite:"(light pass)", meta:"2–3 wks",
+      why:"Get working literacy now; go deep only if your target role demands it. Most ML jobs are tabular + text.",
+      subs:[
+        { name:"Image Fundamentals", topics:[
+          "Images as arrays: pixels & channels","Color spaces (RGB, grayscale)",
+          "Resizing, cropping & normalization","Convolutions on images (visual intuition)"
+        ]},
+        { name:"OpenCV Basics", topics:[
+          "Reading & writing images / video","Basic transformations","Edge detection & contours (awareness)"
+        ]},
+        { name:"Classification in Practice", topics:[
+          "Transfer learning on a custom dataset","Augmentation for small datasets","Evaluating vision models"
+        ]},
+      ],
+      p2:["Object detection (YOLO family)","Segmentation: semantic vs instance","OCR pipelines","Vision transformers (awareness)"],
+      prove:"Fine-tune a pretrained model on a small image dataset you collected yourself (100–500 images)."
+    },
+    {
+      code:"ML·05", title:"ML System Design", meta:"3–4 wks",
+      why:"The senior-engineer skill: thinking in systems, not notebooks. This is the core of ML engineer interviews.",
+      subs:[
+        { name:"Problem Formulation", topics:[
+          "Business goal → ML problem","Business metrics vs ML metrics","When NOT to use ML",
+          "Baseline & heuristic first", "Batch prediction vs online prediction", "Human-in-the-loop vs fully automated systems","Cold start problem",
+          "Latency, throughput, cost, privacy","Feedback signals"
+        ]},
+        { name:"Data System Design", topics:[
+          "Data collection & sources - Logged Data vs User generated data, Training data vs serving data, static vs streaming data","Labeling strategies & label quality",
+          "Logging and Monitoring - When to log, avoiding data leakage, schema design for ML logs",
+          "Data Storage choices & Versioning: lake vs warehouse -  dataset versioning strategies","Privacy & PII basics",
+          "Data Quality & Validation: missing values, outliers, schema validation, data drift detection"
+        ]},
+        { name:"Feature System Design", topics:[
+          "Feature pipelines: batch vs streaming","Training–serving skew",
+          "Feature Engineering as a System: Feature resuse across models, feature coupling problems, feature ownership and governance","Feature versioning & lineage",
+          "Leakage at the system level","Feature stores (concept)",
+          "Feature Store - Why exits, when to use and when not to",
+          "Model Lifecycle : Model versioning, backward compatibility, model rollback, model monitoring and alerting"
+        ]},
+        { name:"Model & Evaluation Strategy", topics:[
+          "Model selection: quality vs cost vs latency","Training Strategies - Designing offline evaluation",
+          "Handling Data Imbalance - sampling strategies, metrics selection",
+          "Online evaluation: A/B tests & shadow deployment","Feedback loops & their dangers",
+          "Failure Analysis: Slice-based evaluation, error analysis, identifying root causes, model interpretability and explainability"
+        ]},
+        { name:"Serving & Monitoring Design", topics:[
+          "Batch vs real-time serving","Latency & throughput budgets - Hardware Consideration & Caching Strategies",
+          "Model Deployment Patterns: Canary, Blue-Green, Rolling Updates",
+          "Monitoring: data drift, concept drift, performance decay","Alerting & fallback design",
+          "Cost Optimization: model compression, quantization, pruning, distillation, traffic shaping",
+          "Performance Monitoring and Feedback Loops",
+          "Governance and Ethics: Bias detection, fairness metrics, explainability, regulatory compliance, auditing predictions"
+        ]},
+      ],
+      p2:["Case studies: recommendations, fraud, search ranking","Capacity estimation & back-of-envelope math","Mock interview practice"],
+      prove:"Write a one-page design doc for \"detect fraudulent transactions\" covering all five modules above."
+    },
+    {
+      code:"ML·06", title:"MLOps", meta:"5–6 wks",
+      why:"Turning a model into a reliable service — the part companies actually pay ML engineers for.",
+      subs:[
+        { name:"Versioning & Experiment Tracking", topics:[
+          "Git workflows for ML projects","Data versioning with DVC","Experiment tracking: MLflow / W&B",
+          "Model registry"
+        ]},
+        { name:"ML Pipelines", topics:[
+          "Why pipelines: reproducibility","Orchestration with Airflow / Prefect",
+          "Scheduling & dependencies","From notebook → production pipeline"
+        ]},
+        { name:"Model Serving", topics:[
+          "Model as an API with FastAPI","Batch scoring jobs","Input validation & schemas (Pydantic)",
+          "Real-time / streaming serving (concept)"
+        ]},
+        { name:"Docker & CI/CD", topics:[
+          "Images, containers & registries","Writing a Dockerfile for an ML app","docker-compose basics",
+          "GitHub Actions: test → build → deploy","Testing ML code: unit tests + data tests"
+        ]},
+        { name:"Distributed Training", topics:[
+          "Why distributed training: memory limits, training time, dataset size tradeoffs","Data parallelism strategy",
+          "Model parallelism strategy","Pipeline parallelism & hybrid strategies","Gradient synchronization & all-reduce",
+          "Parameter servers vs all-reduce communication","Communication bottlenecks & optimization","Node failures & fault tolerance",
+          "Preemption (spot instances) handling","Partial worker recovery","Strong vs weak scaling",
+          "Scaling efficiency & diminishing returns","When NOT to scale","PyTorch Distributed (DDP)",
+          "DeepSpeed","Horovod","TensorFlow Distributed","NCCL communication library"
+        ]},
+        { name:"Checkpointing", topics:[
+          "Why Checkpointing Is Critical - Long running jobs, hardware failures, cost-aware training","What to checkpoint: model weights, optimizer state, scheduler state, random seeds, training state",
+          "Checkpointing strategies: full vs incremental, async checkpointing", "Storage and Performance", "Resuming and Reproducibility","Handling large checkpoints", "Main Tools: PyTorch Checkpointing, TensorFlow Checkpointing, DeepSpeed Zero Checkpointing, S3 / GCS / Azure Blob Storage for Checkpoints, MLflow"
+        ]},
+        { name:"Optimized Inference", topics:[
+          "Why inference is harder than training: always-on systems, latency SLOs, cost per request","Inference vs training differences",
+          "Quantization techniques","Pruning methods","Knowledge distillation","Kernel fusion & operation optimization",
+          "CPU vs GPU vs TPU for inference","Batch sizing for inference","Memory bandwidth constraints",
+          "Model sharding at inference time","Multi-GPU inference strategies","Load balancing across GPUs",
+          "Micro-batching techniques","Dynamic batching approaches","Caching strategies for inference",
+          "Throughput vs latency tradeoffs","TensorRT optimization","ONNX Runtime","NVIDIA Triton Inference Server",
+          "TorchServe deployment","FasterTransformer optimization"
+        ]},
+        { name:"Monitoring & Retraining", topics:[
+          "Logging predictions in production","Data drift detection (e.g. Evidently)",
+          "Performance dashboards","Retraining triggers","Automated retraining pipelines"
+        ]},
+      ],
+      p2:["Large model storage & registries","Kubernetes basics","High-throughput inference (batching, GPU serving)","Multi-GPU debugging & profiling"],
+      prove:"Capstone: a dockerized model served via FastAPI, deployed to the cloud, with CI/CD and a monitoring dashboard."
+    },
+  ],
+
+  ai: [
+    {
+      code:"AI·02", title:"LLM Fundamentals | LLM 101", meta:"2–3 wks",
+      why:"Understand what LLMs actually are — and where they fail — before building anything on them.",
+      subs:[
+        { name:"What Is a Large Language Model (Conceptual Layer): Gives you the mental model", topics:[
+          "What “language modeling” actually means",
+          "Next-token prediction intuition",
+          "Why predicting the next token leads to reasoning-like behavior",
+          "Emergence & scale laws (intuition, not research-heavy)",
+          "Foundation models vs task-specific models",
+          "Generative vs representation models"
+        ]},
+        { name:"How LLMs Work - Transformer architecture (intuition level)", topics:[
+          "Transformer architecture overview","Next-token prediction & pretraining",
+          "Instruction tuning & RLHF (concept)","Why LLMs hallucinate","Knowledge cutoffs",
+          "Context Window & its limits", "Encoder-only vs Decoder-only vs Encoder-Decoder Models", "KV Cache Intuition"
+        ]},
+        { name:"Tokennization & Embeddings", topics:[
+          "Tokenization (BPE intuition, WordPiece)","Why tokenization matters for cost & speed","Embeddings: what they are & how they work",
+          "Counting tokens & estimating cost","Latency vs model size tradeoffs"
+        ]},
+        { name:"The Model Landscape", topics:[
+          "Closed APIs: Claude, GPT, Gemini","Open-weight: Llama, Mistral, Qwen",
+          "Choosing a model: quality / cost / speed / privacy","Running models locally with Ollama (awareness)"
+        ]},
+        { name:"Working with LLM APIs", topics:[
+          "Chat format: system / user / assistant roles","API calls from Python","Streaming responses",
+          "Sampling: temperature, top-p, max tokens","Errors, retries & rate limits"
+        ]},
+        { name:"Inference Mechanics (Runtime Layer)", topics:[
+          "Temperature, top-k, top-p sampling","Deterministic vs stochastic decoding","Beam search intuition",
+          "Log probabilities & scoring","Why sampling affects reliability","Context length limits & management",
+          "Token streaming","Why these mechanics matter for production behavior"
+        ]},
+        { name:"Evaluation & Benchmarks", topics:[
+          "What benchmarks actually measure","MMLU, GSM8K, HumanEval high-level overview",
+          "Why benchmarks can mislead","Latency vs accuracy tradeoffs","Cost per 1K tokens thinking",
+          "How to compare models honestly","Benchmark gaming & overfitting to evals",
+          "Building custom eval harnesses for your use case"
+        ]},
+        { name:"Limitations & Failure Modes", topics:[
+          "Hallucination types: confabulation, semantic drift, factual errors","Context loss & truncation effects",
+          "Prompt sensitivity & jailbreaks","Data contamination & training data effects","Overconfidence in outputs",
+          "Distribution shift from training data","Security risks: prompt injection basics","Reasoning failures on edge cases",
+          "Token limit cutoffs & incomplete reasoning"
+        ]},
+      ],
+      p2:["Multimodal models (vision & audio)","Reasoning models & extended thinking","Advanced prompt injection attacks"],
+      prove:"Build a CLI chatbot that calls an LLM API with streaming and keeps conversation history across turns."
+    },
+    {
+      code:"AI·03", title:"Prompt & Context Engineering", meta:"3–4 wks",
+      why:"The cheapest, highest-leverage skill in AI engineering: getting reliable output by controlling what the model sees.",
+      subs:[
+        { name:"Prompt Engineering Fundamentals", topics:[
+          "Mental Model: Prompt as soft programming","LLM as conditional probability machine","Why wording changes behavior",
+          "Distribution steering intuition","Prompt = input conditioning, not command execution","Why prompts fail: ambiguity & under-specification",
+          "System vs user vs assistant message roles","Task specification & context specification","Constraints & output format definition",
+          "Delimiters & separators for clarity"
+        ]},
+        { name:"Instruction Design Patterns", topics:[
+          "Zero-shot prompting","Few-shot prompting","Role prompting & persona design","Chain-of-thought prompting (conceptual)",
+          "Self-consistency prompting","Step-by-step reasoning","Ask-verify-improve loop",
+          "When to use each pattern"
+        ]},
+        { name:"Structured Output Prompting", topics:[
+          "JSON output prompting","Schema-constrained outputs","Pydantic-style schema thinking",
+          "Function/tool calling patterns","Deterministic format enforcement","Parsing strategies",
+          "Validation after generation"
+        ]},
+        { name:"Prompt Robustness & Reliability", topics:[
+          "Prompt sensitivity testing","Adversarial prompting attempts","Guardrail prompts",
+          "Fallback strategies","Prompt versioning & iteration","Regression testing prompts",
+          "Testing edge cases & failure modes"
+        ]},
+        { name:"Prompt Evaluation & Metrics", topics:[
+          "Qualitative evaluation approaches","Task success rate measurement","Format accuracy rate",
+          "Hallucination rate detection","Prompt A/B testing methodology","Latency vs complexity tradeoffs",
+          "Building reliable eval harnesses"
+        ]},
+        { name:"Security & Safety in Prompting", topics:[
+          "Prompt injection basics & detection","Jailbreak attempts & defenses","Data leakage risks in prompts",
+          "Safe system message design","Separation of instructions & user input","Handling untrusted user data",
+          "Sanitization strategies"
+        ]},
+        { name:"Context Engineering", topics:[
+          "What 'context' means in LLM systems","Context window as working memory","Why LLMs are stateless between requests",
+          "How all inputs flatten into token sequence","Why model quality ≠ system quality","Common context failure patterns",
+          "Everything that becomes context: instructions, queries, documents, history, tool outputs, metadata, examples",
+          "Context selection & top-k tuning","Re-ranking & filtering irrelevant chunks","Separating instructions from data",
+          "Context compression & summarization strategies","Map-reduce & recursive summarization","Removing redundancy",
+          "Structuring context: delimiters, role separation, isolation","Token counting & budgeting","Dynamic truncation strategies",
+          "Sliding windows for conversations","Prioritization of context elements","Detecting retrieval mismatch",
+          "Conflicting information resolution","Preventing instruction contamination"
+        ]},
+        { name:"Iterating & Evaluating Prompts", topics:[
+          "Building a small test set from real usage","Measuring output quality systematically","Comparing prompt variants honestly",
+          "Statistical significance testing","Tracking prompt performance over time"
+        ]},
+      ],
+      p2:["Prompt versioning & management tools (Prompt Flow, Langsmith)","Prompt compression & optimization","Meta-prompting approaches","Advanced context retrieval techniques"],
+      prove:"Build an extractor that turns messy text into validated JSON — measure accuracy on 50+ real examples, test robustness with adversarial inputs, and version your prompts in a tracking system."
+    },
+    {
+      code:"AI·04", title:"AI Application Development", meta:"8–10 wks",
+      why:"The bread-and-butter of AI engineering jobs in 2026: building production-ready systems with LLMs.",
+      subs:[
+        { name:"Embeddings & Vector Databases", topics:[
+          "What embeddings represent","Cosine similarity vs dot product vs Euclidean distance","High-dimensional space intuition",
+          "Why semantically similar text clusters in space","Model-dependent embedding spaces","Why keyword search is insufficient",
+          "Symbolic matching → semantic similarity shift","Specialized indexing for similarity search","Vector DB vs traditional database",
+          "FAISS (local indexing)","Pinecone managed service","Weaviate vector database","Milvus open-source","Chroma lightweight option",
+          "Choosing an embedding model","Indexing strategies","Metadata filtering & tagging"
+        ]},
+        { name:"RAG (Retrieval-Augmented Generation)", topics:[
+          "Why LLMs hallucinate","Parametric memory (weights) vs non-parametric memory (external data)","Training-time knowledge limitations",
+          "RAG as retrieve→inject→generate pattern","When to use RAG vs fine-tuning","RAG pipeline: query→embed→search→retrieve→inject→generate",
+          "Document ingestion & loading (PDF, HTML)","Cleaning & preprocessing","Chunking strategies","Chunk overlap considerations","Metadata tagging",
+          "Embedding generation & indexing","Similarity search basics","Hybrid search (BM25 + vectors)","Re-ranking retrieved documents",
+          "Query expansion techniques","Multi-query retrieval","Metadata-based filtering","Ordering retrieved chunks",
+          "Removing redundancy from results","Separating instructions from retrieved text","Context overflow management","Source attribution & citations",
+          "Iterative retrieval patterns","Self-RAG (self-reflective RAG)","Corrective RAG","Adaptive RAG","Graph RAG","Agentic RAG",
+          "Retrieval precision & recall metrics","Answer faithfulness evaluation","Groundedness checking","Hallucination rate measurement",
+          "Human evaluation strategies","Synthetic test set creation","Poor chunking failure modes","Irrelevant retrieval issues",
+          "Context overload problems","Model ignoring retrieved data","Handling contradictory sources","Stale data management"
+        ]},
+        { name:"Orchestration & Workflows", topics:[
+          "Why single LLM calls are insufficient","From prompt→output to multi-step workflows","Deterministic control around probabilistic systems",
+          "LLM as system component, not the whole system","Workflow vs pipeline vs decision loop","Sequential workflow execution",
+          "Output of step becomes input to next","Conditional routing & if-else branching","Classifier-based routing decisions",
+          "Parallel LLM call execution","Result aggregation strategies","Voting & merging results","Looping & retry patterns",
+          "Reflection loops","Self-critique cycles","Retry on failure with backoff","Max iteration safeguards",
+          "Tool integration & function calling","Structured function schemas","Argument passing","Returning tool outputs to model",
+          "Model-chosen tools vs deterministic routing","LangChain framework patterns","LlamaIndex orchestration",
+          "Building chains and routes"
+        ]},
+        { name:"Memory Management", topics:[
+          "Stateless nature of LLMs between requests","Memory vs context distinction","Short-term vs long-term memory types",
+          "Why applications need persistent memory","Conversation buffer memory","Sliding window memory","Session-level state",
+          "Persistent user data storage","Historical interactions tracking","User preferences maintenance","Knowledge accumulation",
+          "Intermediate outputs & logging","Tool results tracking","Task progress monitoring","Agent state variables",
+          "In-memory storage options","File-based storage","Relational databases (PostgreSQL)","Vector databases for semantic memory",
+          "Key-value stores (Redis)","Document stores (MongoDB)","Recency-based retrieval","Similarity-based retrieval",
+          "Metadata-based filtering","Importance scoring","Hybrid retrieval strategies","Conversation summarization",
+          "Sliding window truncation","Importance-based pruning","Deduplication strategies","Aging & expiry policies",
+          "Agent state persistence","Checkpointing mechanisms","Thread-level isolation","Multi-agent shared memory",
+          "Human-in-loop memory updates","Context overflow prevention","Stale memory detection","Contradictory memory resolution",
+          "Retrieval drift issues","Privacy & data leakage risks","LangGraph checkpointers","LlamaIndex memory modules",
+          "Mem0 memory platform","Redis for caching & sessions","Streamlit session state","FastAPI session middleware"
+        ]},
+        { name:"Fine-Tuning & Adaptation", topics:[
+          "Fine-tuning definition & parametric adaptation","Behavior modification vs knowledge injection","Pretraining vs fine-tuning",
+          "Transfer learning principles","Domain adaptation techniques","Supervised fine-tuning (SFT) basics",
+          "Instruction-response data format","Dataset formatting standards","Cross-entropy loss objective","Train-validation split",
+          "Preference-based tuning overview","Reward modeling","RLHF (Reinforcement Learning from Human Feedback)",
+          "DPO (Direct Preference Optimization)","Alignment vs capability tradeoffs","Parameter-efficient fine-tuning (PEFT)",
+          "Freezing base weights","Adapter-based training","Compute & memory efficiency","Modular adapter design",
+          "LoRA (Low-Rank Adaptation) fundamentals","Low-rank matrix decomposition","Injection into attention layers",
+          "Trainable adapter parameters","Adapter merging vs separate deployment","QLoRA (Quantized LoRA)",
+          "4-bit quantization","Training on quantized weights","Memory optimization","Performance vs precision tradeoffs",
+          "Instruction dataset creation","Data cleaning & deduplication","Domain-specific collection","Synthetic data generation",
+          "Avoiding data leakage","Fine-tuning vs RAG vs prompting","Behavior vs knowledge tradeoffs","Latency & cost analysis",
+          "Task-specific evaluation metrics","Format accuracy measurement","Behavioral consistency testing","Benchmark validation",
+          "Human evaluation procedures","Overfitting prevention","Catastrophic forgetting mitigation","Regularization strategies",
+          "Dataset diversity importance","Adapter storage & versioning","Model compatibility","Deployment strategies",
+          "Quantized inference","Performance monitoring","Rollback & update procedures"
+        ]},
+        { name:"AI Automation & Workflows", topics:[
+          "Automation vs intelligence distinction","Rule-based vs LLM-driven automation","Deterministic vs probabilistic workflows",
+          "Human-in-the-loop automation design","Event-driven workflow triggers","Webhooks integration","Scheduled jobs (cron-based)",
+          "Multi-step pipeline automation","Data→Process→Output flow patterns","Template-based automation",
+          "If-else conditional logic","Classifier-based routing","Intent-based execution","Iterative improvement loops",
+          "Error handling & retries","Validation loop patterns","API integration","Database operation automation",
+          "File handling workflows","Email & messaging automation","Web scraping integration","Third-party SaaS integration",
+          "n8n workflow platform","Zapier automation","Make (formerly Integromat)","Building custom workflows"
+        ]},
+        { name:"Shipping a Full App", topics:[
+          "FastAPI backend for LLM apps","Simple frontend: Streamlit or Next.js","Auth & API key management",
+          "Caching strategies","Cost control & budgeting","Deployment to cloud platforms","Monitoring & observability"
+        ]},
+      ],
+      p2:["Multimodal apps (images & audio)","Real-time streaming architectures","Advanced RAG patterns (Corrective, Adaptive, Agentic)"],
+      prove:"Ship a complete AI application: either a \"chat with your documents\" RAG system on real PDFs with cited sources, or an automated workflow orchestrating multiple LLM calls and external tools end-to-end."
+    },
+    {
+      code:"AI·05", title:"Agentic AI", meta:"5–6 wks",
+      why:"The fastest-growing area of 2026: LLMs that don't just answer, but act — calling tools, planning, and completing tasks.",
+      subs:[
+        { name:"Agent Foundations", topics:[
+          "What makes an agent: reason → act → observe","Agents vs workflows vs chains",
+          "When you actually need an agent (often you don't)","Goal-oriented systems","Task decomposition fundamentals"
+        ]},
+        { name:"Planning & Reasoning", topics:[
+          "Chain-of-Thought reasoning","Tree-of-Thoughts exploration","ReAct (Reason + Act) pattern",
+          "Reflection & self-critique loops","Deliberation vs direct answering","Sequential decision making",
+          "Task decomposition strategies","Subtask generation","Dependency mapping","Ordered vs parallel execution",
+          "Recursive decomposition","Dynamic replanning","Think → Act → Observe loop","Plan → Execute → Evaluate → Revise",
+          "Error-driven replanning","Bounded iterations & convergence criteria","Tool-aware reasoning",
+          "Tool selection reasoning","Argument construction for tools","Tool result interpretation","Planning with external APIs",
+          "Reasoning under partial information","State-aware planning","Maintaining intermediate state",
+          "Updating beliefs across steps","Contextual awareness","Execution trace management",
+          "Planning constraints: tokens, time, cost, safety","Depth limits & complexity budgets","Deterministic overrides",
+          "Human-in-the-loop interruptions","Infinite loop prevention","Hallucinated tool detection",
+          "Incorrect decomposition recovery","Over-planning vs under-planning","Goal alignment maintenance",
+          "Task completion rate evaluation","Plan validity assessment","Step-level accuracy metrics",
+          "Efficiency metrics (steps per task)","Robustness testing on edge cases"
+        ]},
+        { name:"Tool Use & Autonomous Decision Making", topics:[
+          "Function calling & tool schemas","Designing good tools for agents","Autonomous vs deterministic tool routing",
+          "Tool selection reasoning by model","Argument passing & construction","Tool error handling & retries",
+          "Returning tool outputs to model context","Tool result interpretation","Multi-tool coordination",
+          "Handling partial tool failures","Tool hallucination detection","Fallback strategies when tools fail",
+          "Long-horizon tool chains","Sequential tool dependencies"
+        ]},
+        { name:"State & Memory for Agents", topics:[
+          "Stateless LLMs vs stateful agents","Short-term working memory (execution trace)","Long-term memory & knowledge base",
+          "Intermediate outputs tracking","Tool results storage","Task progress & checkpoints","Agent state variables",
+          "Execution context preservation","Multi-step state propagation","Checkpointing for fault tolerance",
+          "Resuming from checkpoints","Thread-level isolation (multi-user agents)","Multi-agent shared memory",
+          "Belief updates across steps","Knowledge accumulation patterns","Memory retrieval for planning",
+          "Agent state persistence","Conversation state vs execution state","Session management",
+          "Human-in-loop state updates","State validation & consistency","Handling contradictory information"
+        ]},
+        { name:"Agent Protocols & Standardization", topics:[
+          "Model Context Protocol (MCP) fundamentals","Why standard tool interfaces matter","Decoupling models from tools",
+          "Tool schema definitions & contracts","Function calling format standardization","Structured tool responses",
+          "Client-server architecture for agents","Model as client, tool provider as server","Local vs remote tool execution",
+          "Capability discovery & tool registration","Dynamic capability exposure","Tool metadata & descriptions",
+          "Security & sandboxing in protocols","Permission control","Input validation","Preventing arbitrary code execution",
+          "MCP implementation basics","A2A (Agent-to-Agent) protocols (awareness)"
+        ]},
+        { name:"Agent Frameworks & Implementations", topics:[
+          "LangGraph: stateful agent patterns","ReAct pattern implementation","Tool calling with LangGraph",
+          "State persistence in LangGraph","Checkpointing & resumption","AutoGen multi-agent systems",
+          "Role-based agent specialization","Agent communication patterns","CrewAI for cooperative agents",
+          "Agent hierarchies & orchestration","LlamaIndex agents","Semantic Kernel agents","Haystack agents",
+          "When to build custom vs use framework","Framework trade-offs: flexibility vs simplicity","Agent SDKs",
+          "OpenAI Agents SDK","Anthropic Claude agents","Agno framework"
+        ]},
+      ],
+      p2:["Multi-agent systems & orchestration","Long-horizon tasks & checkpointing","Computer-use / browser agents","Agent evaluation harnesses"],
+      prove:"Build one working agent that uses at least two real tools (e.g. web search + database) to complete a multi-step task end-to-end, with reasoning traces and error recovery."
+    },
+    {
+      code:"AI·06", title:"LLMOps", meta:"4–5 wks",
+      why:"Demos are easy; production is the job. Cost, reliability and safety are what make you hireable.",
+      subs:[
+        { name:"Deployment Architectures", topics:[
+          "API-based model access (OpenAI, Anthropic, Bedrock, Vertex AI)","Self-hosted open models","Hybrid (API + local)",
+          "Serverless vs containerized deployment","REST APIs for AI services","Background task workers & async processing",
+          "Authentication & rate limiting design","FastAPI for LLM backends","Docker containerization",
+          "Environment management (dev/staging/prod)","Scaling replicas & load balancing","GPU inference servers",
+          "Quantized inference for efficiency","Batch vs real-time serving patterns","vLLM, TGI, Ollama deployment",
+          "Horizontal scaling strategies","Response caching optimization","Queue-based systems (RabbitMQ, Kafka)",
+          "Token & latency optimization","CDN integration for responses"
+        ]},
+        { name:"Observability & Monitoring", topics:[
+          "Full prompt & context logging","Tool call tracing & visibility","Multi-step workflow tracing","Request-level logging",
+          "Token usage tracking per request","Cost per request calculation","Latency breakdown (model vs retrieval vs tools)",
+          "SLA monitoring & alerting","LangSmith for production tracing","OpenTelemetry standards",
+          "Step-level execution tracking","Tool failure rate monitoring","Retry frequency tracking",
+          "Loop detection & prevention alerts","Hallucination rate tracking","Output validation failures",
+          "Guardrail trigger frequency","Error threshold alerts","Cost spike detection","Latency anomaly alerts",
+          "Automated rollback triggers","Prometheus metrics collection","Grafana dashboards","Datadog integration"
+        ]},
+        { name:"Safety & Guardrails", topics:[
+          "Prompt injection prevention","Input validation & sanitization","Role separation (system vs user input)",
+          "Toxicity detection on outputs","Sensitive data masking (PII detection)","Structured output validation with schemas",
+          "Tool permission control & sandboxing","Argument validation for tools","Limiting file system & network access",
+          "Instruction isolation & trusted context separation","Retrieval filtering to prevent contamination",
+          "Output constraint enforcement","Content policy enforcement","User-level access control",
+          "Rate limiting per tier / user","Audit logging of all operations","Human-in-the-loop approval workflows",
+          "Escalation triggers for high-risk outputs","Editable outputs for user correction","Risk-based routing decisions",
+          "OpenAI Moderation API","Anthropic Safety Filters","AWS Bedrock Guardrails","Guardrails AI framework",
+          "Presidio for PII detection","Pydantic for schema validation"
+        ]},
+        { name:"Governance & Compliance", topics:[
+          "Data sourcing & retention policies","PII handling & privacy protocols","User data isolation","Data deletion workflows",
+          "Role-Based Access Control (RBAC)","API key management & rotation","OAuth / JWT authentication",
+          "Environment separation & access control","Model versioning & change tracking","Prompt version control",
+          "Approval workflows for deployments","Change tracking & audit trails","GDPR readiness checks",
+          "Data localization requirements","Industry-specific compliance (finance, healthcare)","Audit logging",
+          "Risk classification frameworks","Impact assessment procedures","AI usage policies & documentation",
+          "Request logging & decision traceability","Model usage tracking","Explainability artifacts",
+          "Incident reporting systems","Compliance dashboards & monitoring"
+        ]},
+        { name:"Managed AI Platforms & Integration", topics:[
+          "What managed platforms provide: hosted models, inference APIs, built-in scaling","Security & IAM integration",
+          "Data encryption & VPC isolation","Compliance certifications & standards","Model selection & switching ease",
+          "Fine-tuning support on managed platforms","RAG integrations (retrieval services)","Guardrails & safety controls",
+          "Monitoring dashboards built-in","Serverless inference scaling","Auto-scaling policies","Multi-region deployment",
+          "Load balancing","Rate limiting controls","AWS Bedrock capabilities","Azure OpenAI integration",
+          "Google Vertex AI platform","Hugging Face Inference Endpoints","Anthropic Platform","OpenAI Platform",
+          "When to choose managed: fast deployment, enterprise needs, compliance, reduced ops","Trade-offs: vendor lock-in, customization limits, cost, control",
+          "Hybrid approach: managed + self-hosted"
+        ]},
+      ],
+      p2:["UX & product design for AI (loading states, uncertainty, feedback)","Red-teaming & security testing","Cost optimization strategies"],
+      prove:"Capstone: deploy your RAG app or agent with full observability (tracing & metrics), an eval suite testing multiple scenarios, safety guardrails, and basic compliance documentation."
+    },
+  ],
+};
+
+  ],
+};
+
+/* =========================================================
+   RENDERING
+   ========================================================= */
+function esc(s){ return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
+
+function renderStation(st){
+  const letters = "abcdefghijklmnopqrstuvwxyz";
+  const subsHtml = st.subs.map((sub,i)=>`
+    <details class="sub" open>
+      <summary>
+        <span class="sub-idx">${letters[i]}</span>
+        <span class="sub-name">${esc(sub.name)}</span>
+        <span class="sub-count">${sub.topics.length} topics</span>
+        <span class="sub-caret">▾</span>
+      </summary>
+      <div class="sub-body">
+        <ul class="topics">${sub.topics.map(t=>`<li>${esc(t)}</li>`).join("")}</ul>
+      </div>
+    </details>`).join("");
+
+  const p2Html = (st.p2 && st.p2.length) ? `
+    <div class="p2-block">
+      <div class="p2-label">Phase 2 — after your first project</div>
+      <ul class="topics p2">${st.p2.map(t=>`<li>${esc(t)}</li>`).join("")}</ul>
+    </div>` : "";
+
+  const lite = st.lite ? ` <span class="lite">${esc(st.lite)}</span>` : "";
+
+  return `
+  <div class="station">
+    <div class="card">
+      <button class="station-head" onclick="toggleStation(this)" aria-expanded="false">
+        <span class="station-code">${esc(st.code)}</span>
+        <span class="station-title">${esc(st.title)}${lite}</span>
+        <span class="station-meta">${esc(st.meta)}</span>
+        <span class="caret">▾</span>
+      </button>
+      <div class="station-body">
+        <p class="why">${esc(st.why)}</p>
+        ${subsHtml}
+        ${p2Html}
+        <div class="prove"><b>Prove it</b> ${esc(st.prove)}</div>
+      </div>
+    </div>
+  </div>`;
+}
+
+function renderRail(id, stations){
+  document.getElementById(id).innerHTML = stations.map(renderStation).join("");
+}
+
+/* =========================================================
+   INTERACTION
+   ========================================================= */
+function toggleStation(btn){
+  const station = btn.closest('.station');
+  const open = station.classList.toggle('open');
+  btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+}
+
+let allOpen = false;
+function toggleAll(){
+  allOpen = !allOpen;
+  document.querySelectorAll('.station').forEach(s=>{
+    s.classList.toggle('open', allOpen);
+    const b = s.querySelector('.station-head');
+    if(b) b.setAttribute('aria-expanded', allOpen ? 'true' : 'false');
+  });
+  document.getElementById('toggleAllBtn').textContent =
+    allOpen ? 'Collapse all stations' : 'Expand all stations';
+}
+
+function setFilter(which, btn){
+  document.querySelectorAll('.seg button').forEach(b=>b.setAttribute('aria-pressed','false'));
+  btn.setAttribute('aria-pressed','true');
+  document.querySelectorAll('.branch').forEach(br=>{
+    const show = (which === 'all') || (br.dataset.branch === which);
+    br.style.display = show ? '' : 'none';
+  });
+  const grid = document.querySelector('.branches');
+  grid.style.gridTemplateColumns = (which === 'all') ? '' : '1fr';
+  if(which !== 'all'){
+    document.getElementById('fork').scrollIntoView({block:'start'});
+  }
+}
+
+/* Initialize roadmap rendering after DOM is ready */
+document.addEventListener('DOMContentLoaded', function(){
+  renderRail("rail-stage0", ROADMAP.stage0);
+  renderRail("rail-stage1", ROADMAP.stage1);
+  renderRail("rail-ml", ROADMAP.ml);
+  renderRail("rail-ai", ROADMAP.ai);
+});
+</script>
+</body>
+</html>
+
