@@ -166,7 +166,7 @@
 
 <header class="wrap">
   <div class="eyebrow">Career roadmap · 2026 edition · students &amp; freshers</div>
-  <h1>One map.<br>Two destinations: <span class="ml-word">ML&nbsp;Engineer</span> or <span class="ai-word">AI&nbsp;Engineer</span>.</h1>
+  <h1>One map.<br>Two destinations: <span class="ml-word">ML&nbsp;Engineer&nbsp;Track</span> or <span class="ai-word">AI&nbsp;Engineer&nbsp;Track</span>.</h1>
   <p class="lede">
     Everyone walks the same trunk line first — prerequisites, then core machine learning.
     Only after that do you choose a branch. Click a station to open it, then explore each module inside.
@@ -189,15 +189,15 @@
   <div class="wrap toolbar-inner">
     <div class="seg" role="group" aria-label="Filter branches">
       <button type="button" class="f-all" aria-pressed="true" data-filter="all">Show both paths</button>
-      <button type="button" class="f-ml" aria-pressed="false" data-filter="ml">ML Engineer</button>
-      <button type="button" class="f-ai" aria-pressed="false" data-filter="ai">AI Engineer</button>
+      <button type="button" class="f-ml" aria-pressed="false" data-filter="ml">ML Engineer Track</button>
+      <button type="button" class="f-ai" aria-pressed="false" data-filter="ai">AI Engineer Track</button>
     </div>
     <button type="button" class="util" id="toggleAllBtn">Expand all stations</button>
   </div>
   <div class="wrap legend">
     <span class="chip-demo"><span class="dot" style="background:var(--trunk)"></span> Shared trunk</span>
-    <span class="chip-demo"><span class="dot" style="background:var(--ml)"></span> ML Engineer branch</span>
-    <span class="chip-demo"><span class="dot" style="background:var(--ai)"></span> AI Engineer branch</span>
+    <span class="chip-demo"><span class="dot" style="background:var(--ml)"></span> ML Engineer Track</span>
+    <span class="chip-demo"><span class="dot" style="background:var(--ai)"></span> AI Engineer Track</span>
     <span class="chip-demo">● Core topic &nbsp;·&nbsp; ◌ Phase 2 (learn after your first project)</span>
   </div>
 </div>
@@ -236,8 +236,8 @@
   </svg>
   <h2>The fork: pick one branch</h2>
   <p>
-    Both are real, hiring-in-2026 careers. <strong style="color:var(--ml)">ML Engineers</strong> build and ship models trained on data.
-    <strong style="color:var(--ai)">AI Engineers</strong> build products on top of large language models.
+    Both are real, hiring-in-2026 careers. <strong style="color:var(--ml)">ML Engineer Track</strong> specializes in roles like ML Engineer, MLOps Engineer, Data Scientist, NLP Engineer, and CV Engineer — building and shipping models trained on data.
+    <strong style="color:var(--ai)">AI Engineer Track</strong> focuses on roles like AI Engineer, GenAI Engineer, LLMOps Engineer, and Agentic Engineer — building products on top of large language models.
     Pick the one that excites you — you can always cross over later, because the trunk is shared.
   </p>
 
@@ -245,8 +245,8 @@
     <div class="branch branch-ml" data-branch="ml">
       <div class="branch-head bh-ml">
         <div class="eyebrow">Branch A</div>
-        <h3>ML Engineer</h3>
-        <p>Train, evaluate and productionize models — deep learning, system design, and MLOps.</p>
+        <h3>ML Engineer Track</h3>
+        <p><strong>Specialities:</strong> ML Engineer, MLOps Engineer, Data Scientist, NLP Engineer, CV Engineer<br>Train, evaluate and productionize models — deep learning, system design, and MLOps.</p>
         <div class="bh-time">≈ 4–6 months after the trunk</div>
       </div>
       <div class="rail rail-ml" id="rail-ml"></div>
@@ -255,8 +255,8 @@
     <div class="branch branch-ai" data-branch="ai">
       <div class="branch-head bh-ai">
         <div class="eyebrow">Branch B</div>
-        <h3>AI Engineer</h3>
-        <p>Build products on top of LLMs — RAG systems, agents, and production LLM apps.</p>
+        <h3>AI Engineer Track</h3>
+        <p><strong>Roles:</strong> AI Engineer, GenAI Engineer, LLMOps Engineer, Agentic Engineer<br>Build products on top of LLMs — RAG systems, agents, and production LLM apps.</p>
         <div class="bh-time">≈ 4–6 months after the trunk</div>
       </div>
       <div class="rail rail-ai" id="rail-ai"></div>
@@ -668,7 +668,45 @@ const ROADMAP = {
       prove:"Complete 2–3 end-to-end projects from problem statement through deployment. Push all to GitHub with thorough documentation and live demos."
     },
     {
-      code:"ML·02", title:"Deep Learning", meta:"6–8 wks",
+      code:"ML·02", title:"NLP", meta:"3–4 wks",
+      why:"Text is the most common data type in industry. Classic NLP still powers search, classification and pipelines everywhere.",
+      subs:[
+        { name:"Text Processing", topics:[
+          "Tokenization: word & subword","Lowercasing & text cleaning","Stop words",
+          "Stemming vs lemmatization","Regex for text","Multilingual text considerations"
+        ]},
+        { name:"Text Representation", topics:[
+          "Bag of Words","TF-IDF","n-grams","Word embeddings: Word2Vec & GloVe",
+          "Static vs contextual embeddings (concept)"
+        ]},
+        { name:"The NLP Pipeline", topics:[
+          "End-to-end text classification project","Evaluation & error analysis on text",
+          "Hugging Face: pipeline API","Hugging Face: tokenizers & pretrained models"
+        ]},
+      ],
+      p2:["NER & sequence labeling","Fine-tuning transformers (BERT-style)","Sentence embeddings & semantic search","Topic modeling"],
+      prove:"Build a sentiment or spam classifier twice — once with TF-IDF + logistic regression, once with a pretrained transformer — and compare honestly."
+    },
+    {
+      code:"ML·03", title:"Computer Vision", lite:"(light pass)", meta:"2–3 wks",
+      why:"Get working literacy now; go deep only if your target role demands it. Most ML jobs are tabular + text.",
+      subs:[
+        { name:"Image Fundamentals", topics:[
+          "Images as arrays: pixels & channels","Color spaces (RGB, grayscale)",
+          "Resizing, cropping & normalization","Convolutions on images (visual intuition)"
+        ]},
+        { name:"OpenCV Basics", topics:[
+          "Reading & writing images / video","Basic transformations","Edge detection & contours (awareness)"
+        ]},
+        { name:"Classification in Practice", topics:[
+          "Transfer learning on a custom dataset","Augmentation for small datasets","Evaluating vision models"
+        ]},
+      ],
+      p2:["Object detection (YOLO family)","Segmentation: semantic vs instance","OCR pipelines","Vision transformers (awareness)"],
+      prove:"Fine-tune a pretrained model on a small image dataset you collected yourself (100–500 images)."
+    },
+    {
+      code:"ML·04", title:"Deep Learning", meta:"6–8 wks",
       why:"The engine behind modern vision, language and speech. Learn PyTorch by building, not by watching.",
       subs:[
         { name:"Neural Network Foundations", topics:[
@@ -714,52 +752,26 @@ const ROADMAP = {
           "Decoder-only (GPT-style)",
           "Encoder-decoder (T5-style)"
         ]},
-        { name:"Applied Deep Learning", topics:[
-          "NLP with DL: text classification with embeddings / transformers",
-          "CV with DL: image classification via transfer learning",
-          "Time series with DL: forecasting with LSTMs"
+        { name:"NLP using Deep Learning", topics:[
+          "Using word embeddings for NLP tasks","Pretrained embeddings (Word2Vec, GloVe, FastText)","Choosing embedding dimensions","Handling out-of-vocabulary words","Using embeddings as model inputs",
+          "Text classification using RNN","Text classification using LSTM","Sentiment analysis using RNN/LSTM","Handling variable-length text inputs","Using bidirectional RNN/LSTM for NLP","Comparing RNN vs LSTM performance on NLP tasks",
+          "Language translation using encoder–decoder models","Text generation using encoder–decoder models","Handling variable-length input and output sequences","Applying teacher forcing during training","Using attention in Seq2Seq models","Improving generation using beam search",
+          "Solving text classification using Transformers","Solving sequence labeling tasks using Transformers","Solving language translation using Transformers","Solving text generation using Transformers","Encoder-only vs decoder-only vs encoder–decoder Transformers","Fine-tuning pretrained Transformer models for NLP tasks"
+        ]},
+        { name:"CV using Deep Learning", topics:[
+          "Train CNN-based image classifiers","Apply data augmentation for classification","Handle class imbalance in image datasets","Use transfer learning for classification problems","Evaluate with accuracy, top-k accuracy, confusion matrix",
+          "Use pretrained backbones (ResNet/EfficientNet/MobileNet)","Feature extraction vs fine-tuning","Layer freezing strategies","Domain shift handling","Training from scratch vs fine-tuning comparison","Use pretrained models as backbones for detection/segmentation",
+          "Bounding boxes and annotations","Anchor-based vs anchor-free detection","IoU (Intersection over Union)","Non-Max Suppression (NMS)","Detection metrics: mAP, precision/recall",
+          "R-CNN & Fast R-CNN & Faster R-CNN","SSD & YOLO family (YOLOv3/v5/v8)","RetinaNet & focal loss","Train a detector on a custom dataset","Data augmentation for detection","Handling small objects","Speed vs accuracy tradeoffs",
+          "Semantic segmentation","Instance segmentation","Panoptic segmentation (high-level)","FCN, U-Net & DeepLab (concepts)","Mask R-CNN for instance segmentation","IoU & Dice coefficient metrics","Building masks and annotations","Handling class imbalance in masks","Post-processing masks (basic)",
+          "Vision Transformer (ViT) for classification","Patch embeddings and image tokens (conceptual)","CNN vs ViT tradeoffs","Swin Transformer (high-level)","Transformer backbones for detection/segmentation (high-level)","DETR (conceptual mention)"
+        ]},
+        { name:"Time Series with Deep Learning", topics:[
+          "Time series forecasting with LSTMs","Handling sequential temporal data","Multivariate time series modeling"
         ]},
       ],
       p2:["Implementing a transformer from scratch","Mixed-precision & GPU efficiency","Learning-rate finders & tuning at scale","Self-supervised learning (awareness)"],
       prove:"Train an image classifier with transfer learning in PyTorch — log the training curves and explain every choice in the README."
-    },
-    {
-      code:"ML·03", title:"NLP", meta:"3–4 wks",
-      why:"Text is the most common data type in industry. Classic NLP still powers search, classification and pipelines everywhere.",
-      subs:[
-        { name:"Text Processing", topics:[
-          "Tokenization: word & subword","Lowercasing & text cleaning","Stop words",
-          "Stemming vs lemmatization","Regex for text","Multilingual text considerations"
-        ]},
-        { name:"Text Representation", topics:[
-          "Bag of Words","TF-IDF","n-grams","Word embeddings: Word2Vec & GloVe",
-          "Static vs contextual embeddings (concept)"
-        ]},
-        { name:"The NLP Pipeline", topics:[
-          "End-to-end text classification project","Evaluation & error analysis on text",
-          "Hugging Face: pipeline API","Hugging Face: tokenizers & pretrained models"
-        ]},
-      ],
-      p2:["NER & sequence labeling","Fine-tuning transformers (BERT-style)","Sentence embeddings & semantic search","Topic modeling"],
-      prove:"Build a sentiment or spam classifier twice — once with TF-IDF + logistic regression, once with a pretrained transformer — and compare honestly."
-    },
-    {
-      code:"ML·04", title:"Computer Vision", lite:"(light pass)", meta:"2–3 wks",
-      why:"Get working literacy now; go deep only if your target role demands it. Most ML jobs are tabular + text.",
-      subs:[
-        { name:"Image Fundamentals", topics:[
-          "Images as arrays: pixels & channels","Color spaces (RGB, grayscale)",
-          "Resizing, cropping & normalization","Convolutions on images (visual intuition)"
-        ]},
-        { name:"OpenCV Basics", topics:[
-          "Reading & writing images / video","Basic transformations","Edge detection & contours (awareness)"
-        ]},
-        { name:"Classification in Practice", topics:[
-          "Transfer learning on a custom dataset","Augmentation for small datasets","Evaluating vision models"
-        ]},
-      ],
-      p2:["Object detection (YOLO family)","Segmentation: semantic vs instance","OCR pipelines","Vision transformers (awareness)"],
-      prove:"Fine-tune a pretrained model on a small image dataset you collected yourself (100–500 images)."
     },
     {
       code:"ML·05", title:"ML System Design", meta:"3–4 wks",
